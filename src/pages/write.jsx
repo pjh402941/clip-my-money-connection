@@ -92,51 +92,33 @@ const LayoutIcon = styled.img`
 const Write = () => {
   return (
     <Container>
-      <Header className="header">
-        <BackButton
-          id="back-button"
-          src="images/뒤로가기.png"
-          alt="back"
-          width="16px"
-        />
+      <Header>
+        <BackButton src="images/뒤로가기.png" alt="back" width="16px" />
       </Header>
-      <Body className="body">
+      <Body>
         <form>
-          <FormHeader className="form-header">
-            <Date id="date"></Date>
-            <SubmitBox className="submit-box">
-              <SubmitButton id="submit-button" type="submit">
-                저장
-              </SubmitButton>
+          <FormHeader>
+            <Date></Date>
+            <SubmitBox>
+              <SubmitButton type="submit">저장</SubmitButton>
             </SubmitBox>
           </FormHeader>
-          <FormContentWrapper className="form-content-wrapper">
-            <FormContent className="form-content">
-              <Title id="title" name="title" />
-              <Content id="content" name="content" />
+          <FormContentWrapper>
+            <FormContent>
+              <Title name="title" />
+              <Content name="content" />
               {/* canvas */}
             </FormContent>
           </FormContentWrapper>
         </form>
       </Body>
       <Footer>
-        <ToolBox className="tool-box">
-          <TextIcon id="text" src="images/텍스트.png" alt="text" width="24px" />
-          <ImageIcon
-            id="image"
-            src="images/이미지0.png"
-            alt="image"
-            width="24px"
-          />
-          <DrawIcon id="draw" src="images/그리기.png" alt="draw" width="24px" />
-          <ColorIcon
-            id="color"
-            src="images/색상.png"
-            alt="color"
-            width="24px"
-          />
+        <ToolBox>
+          <TextIcon src="images/텍스트.png" alt="text" width="24px" />
+          <ImageIcon src="images/이미지0.png" alt="image" width="24px" />
+          <DrawIcon src="images/그리기.png" alt="draw" width="24px" />
+          <ColorIcon src="images/색상.png" alt="color" width="24px" />
           <LayoutIcon
-            id="layout"
             src="images/레이아웃 양식.png"
             alt="layout"
             width="24px"
