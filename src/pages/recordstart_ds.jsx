@@ -160,4 +160,8 @@ const Recordstart_ds = () => {
     </Background>
   );
 };
+<<<<<<< HEAD
 export default Recordstart_ds;
+=======
+export default Recordstart_ds;
+>>>>>>> 3b1337aa43e5d3dd07aa698a4537bbb9d2fceb42
