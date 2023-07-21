@@ -155,7 +155,7 @@ const Login = () => {
       <LoginInput>
         <IdPwInput type="text" placeholder="아이디"></IdPwInput>
         <IdPwInput type="password" placeholder="비밀번호"></IdPwInput>
-        <PwAgain>비밀번호 재설정</PwAgain>
+        <PwAgain>비밀번호 재설정!</PwAgain>
       </LoginInput>
       <LoginBox>
         <Text>로그인</Text>
