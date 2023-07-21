@@ -107,4 +107,8 @@ const Dayselect = () => {
     </Background>
   );
 };
+<<<<<<< HEAD
 export default Dayselect;
+=======
+export default Dayselect;
+>>>>>>> 3b1337aa43e5d3dd07aa698a4537bbb9d2fceb42
