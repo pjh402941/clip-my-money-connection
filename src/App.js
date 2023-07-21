@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 // import Write from "./pages/write";
-// import Read from "./pages/read";
+import Read from "./pages/read";
 // import Save from "./pages/save";
-import Share from "./pages/share";
+// import Share from "./pages/share";
 
 function App() {
   return (
@@ -13,13 +13,14 @@ function App() {
           margin: "0px auto",
           minHeight: "100vh",
           position: "relative",
+          
         }}
       >
         <Routes>
           {/* <Route path="/" element={<Write />} /> */}
-          {/* <Route path="/" element={<Read />} /> */}
+          <Route path="/" element={<Read />} />
           {/* <Route path="/" element={<Save />} /> */}
-          <Route path="/" element={<Share />} />
+          {/* <Route path="/" element={<Share />} /> */}
         </Routes>
       </div>
     </BrowserRouter>
