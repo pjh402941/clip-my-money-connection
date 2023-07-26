@@ -196,6 +196,11 @@ const Login = () => {
         ></IdPwInput>
         <PwAgain>비밀번호 재설정</PwAgain>
       </LoginInput>
+      <LoginInput>
+        <IdPwInput type="text" placeholder="아이디"></IdPwInput>
+        <IdPwInput type="password" placeholder="비밀번호"></IdPwInput>
+        <PwAgain>비밀번호 재설정!</PwAgain>
+      </LoginInput>
       <LoginBox formAction="">
         <Text>로그인</Text>
       </LoginBox>
