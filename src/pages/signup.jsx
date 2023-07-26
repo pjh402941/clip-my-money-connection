@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
@@ -68,7 +68,7 @@ const Agree = styled.div`
   position: relative;
   margin: auto;
   top: 22px;
-  margin-top: 22px;
+  margin-top: 25px;
   width: 310px;
   height: 44px;
   background: #b3dbd4;
@@ -77,10 +77,25 @@ const Agree = styled.div`
   border: none;
 `;
 
-const Check = styled.div`
+const Check = styled.input`
   position: relative;
   margin-left: -266px;
-  padding-top: 10px;
+  margin-top: 10.5px;
+  appearance: none;
+
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1.5px solid gainsboro;
+  border-radius: 0.35rem;
+
+  &:checked {
+    border-color: transparent;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+    background-size: 100% 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-color: #c2c2c2;
+  }
 `;
 
 const AgreeText = styled.div`
@@ -91,7 +106,7 @@ const AgreeText = styled.div`
   font-weight: bold;
   color: #214a43;
   text-align: left;
-  margin-top: -26.3px;
+  margin-top: -29.5px;
   margin-left: 44.5px;
   padding-left: 10px;
   padding-right: 10px;
@@ -113,10 +128,26 @@ const AllAgree = styled.div`
   border: none;
 `;
 
-const Check2 = styled.div`
+const Check2 = styled.input`
   position: relative;
+  appearance: none;
   margin-left: -266px;
+  margin-top: 14px;
   padding-top: 14.5px;
+
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1.5px solid gainsboro;
+  border-radius: 0.35rem;
+
+  &:checked {
+    border-color: transparent;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+    background-size: 100% 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-color: #c2c2c2;
+  }
 `;
 
 const AgreeText2 = styled.div`
@@ -128,7 +159,7 @@ const AgreeText2 = styled.div`
   color: #214a43;
   text-align: left;
   line-height: 28px;
-  margin-top: -31px;
+  margin-top: -33px;
   margin-left: 44.5px;
   padding-left: 10px;
   padding-right: 10px;
@@ -136,7 +167,7 @@ const AgreeText2 = styled.div`
   background: #ffffff;
 `;
 
-const Done = styled.div`
+const Done = styled.button`
   position: relative;
   width: 145px;
   height: 35px;
@@ -145,14 +176,69 @@ const Done = styled.div`
   border-radius: 6px;
   font-weight: bold;
   font-size: 12px;
-  line-height: 35px;
   color: #ffffff;
   margin: auto;
   margin-top: 68px;
+  border: none;
 `;
 
 const SignUp = () => {
   const navigate = useNavigate();
+
+  const onClick = () => {
+    navigate(`/SignUpDetail`);
+  };
+
+  const [allCheck, setAllCheck] = useState(false);
+  const [ageCheck, setAgeCheck] = useState(false);
+  const [useCheck, setUseCheck] = useState(false);
+  const [marketingCheck, setMarketingCheck] = useState(false);
+
+  const allBtnEvent = () => {
+    if (allCheck === false) {
+      setAllCheck(true);
+      setAgeCheck(true);
+      setUseCheck(true);
+      setMarketingCheck(true);
+    } else {
+      setAllCheck(false);
+      setAgeCheck(false);
+      setUseCheck(false);
+      setMarketingCheck(false);
+    }
+  };
+
+  const ageBtnEvent = () => {
+    if (ageCheck === false) {
+      setAgeCheck(true);
+    } else {
+      setAgeCheck(false);
+    }
+  };
+
+  const useBtnEvent = () => {
+    if (useCheck === false) {
+      setUseCheck(true);
+    } else {
+      setUseCheck(false);
+    }
+  };
+
+  const marketingBtnEvent = () => {
+    if (marketingCheck === false) {
+      setMarketingCheck(true);
+    } else {
+      setMarketingCheck(false);
+    }
+  };
+
+  useEffect(() => {
+    if (ageCheck === true && useCheck === true && marketingCheck === true) {
+      setAllCheck(true);
+    } else {
+      setAllCheck(false);
+    }
+  }, [ageCheck, useCheck, marketingCheck]);
 
   return (
     <Background>
@@ -177,47 +263,43 @@ const SignUp = () => {
       </TitleBox>
       <AgreeBox>
         <Agree>
-          <Check>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/check.png`}
-              alt="check"
-              width="24px"
-            />
-          </Check>
+          <Check
+            type="checkbox"
+            name="terms"
+            checked={useCheck}
+            onChange={useBtnEvent}
+          />
           <AgreeText>[필수] 서비스 이용약관 동의</AgreeText>
         </Agree>
         <Agree>
-          <Check>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/check.png`}
-              alt="check"
-              width="24px"
-            />
-          </Check>
+          <Check
+            type="checkbox"
+            name="collect"
+            checked={ageCheck}
+            onChange={ageBtnEvent}
+          />
           <AgreeText>[필수] 개인정보 수집 및 이용 동의</AgreeText>
         </Agree>
         <Agree>
-          <Check>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/check.png`}
-              alt="check"
-              width="24px"
-            />
-          </Check>
+          <Check
+            type="checkbox"
+            name="marketing"
+            checked={marketingCheck}
+            onChange={marketingBtnEvent}
+          />
           <AgreeText>[선택] 마케팅 정보 수신 동의</AgreeText>
         </Agree>
       </AgreeBox>
       <AllAgree>
-        <Check2>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/check.png`}
-            alt="check"
-            width="24px"
-          />
-        </Check2>
+        <Check2
+          type="checkbox"
+          name="all"
+          checked={allCheck}
+          onChange={allBtnEvent}
+        />
         <AgreeText2>전체 동의</AgreeText2>
       </AllAgree>
-      <Done>가입하기</Done>
+      <Done onClick={onClick}>가입하기</Done>
     </Background>
   );
 };
