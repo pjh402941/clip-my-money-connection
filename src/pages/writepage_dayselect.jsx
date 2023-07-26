@@ -3,6 +3,9 @@ import styled from "styled-components";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
+import "./Calendarstyle.css";
+
+//import moment from "moment";
 
 const Container = styled.div`
   position: relative;
@@ -55,7 +58,7 @@ const Topgreenbox = styled.div`
   width: 190px;
   height: 30px;
   margin: 0 auto;
-  margin-top: 70px;
+  margin-top: 40px;
   border-radius: 6px;
   background: #55877e;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -94,19 +97,13 @@ const Calendarbox = styled.div`
   align-items: center;
   gap: 11px;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 40px;
 
   border-radius: 6px;
-  background: #55877e;
+  background: #2a534c;
 `;
 
-const CalendarBottom = styled.div`
-  height: 19.5px;
-  flex-shrink: 0;
-  margin: 0 auto;
-`;
-
-const SelectBtn = styled.div`
+const SelectBtn = styled.button`
   display: inline-flex;
   padding: 6px 36px;
   align-items: flex-start;
@@ -129,11 +126,31 @@ const SelectText = styled.div`
 `;
 
 function ReactCalendar() {
-  const [value, onChange] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+  const formatDate = (date) => {
+    return date.toLocaleString("ko-KR", {
+      year: "2-digit",
+      month: "2-digit",
+      day: "2-digit",
+    });
+  };
+
+  const style = {};
   return (
     <div>
-      <Calendar onChange={onChange} value={value} />
+      <Calendar
+        locale="en"
+        onChange={handleDateChange}
+        value={selectedDate}
+        onClickDay={handleDateChange}
+        calendarType={"US"}
+      />
+      <p style={{ color: "white" }}>선택한 날짜 : {formatDate(selectedDate)}</p>
     </div>
   );
 }
@@ -166,15 +183,10 @@ const Dayselect = () => {
           />
         </Celendericon>
       </Topgreenbox>
+
       <Calendarbox>
         <ReactCalendar></ReactCalendar>
       </Calendarbox>
-      <CalendarBottom>
-        <img
-          src={`${process.env.PUBLIC_URL}/images/calendarbottom.png`}
-          alt="celenderbottom"
-        />
-      </CalendarBottom>
 
       <SelectBtn onClick={navigateTowrite}>
         <SelectText>날짜 선택</SelectText>
