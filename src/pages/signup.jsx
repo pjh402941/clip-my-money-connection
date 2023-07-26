@@ -96,7 +96,59 @@ const AgreeText = styled.div`
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 6px;
+  line-height: 20px;
   background: #ffffff;
+`;
+
+const AllAgree = styled.div`
+  position: relative;
+  margin: auto;
+  top: 22px;
+  margin-top: 22px;
+  width: 310px;
+  height: 52px;
+  background: #b3dbd4;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  border: none;
+`;
+
+const Check2 = styled.div`
+  position: relative;
+  margin-left: -266px;
+  padding-top: 14.5px;
+`;
+
+const AgreeText2 = styled.div`
+  position: relative;
+  width: 236px;
+  height: 29px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #214a43;
+  text-align: left;
+  line-height: 28px;
+  margin-top: -31px;
+  margin-left: 44.5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 6px;
+  background: #ffffff;
+`;
+
+const Done = styled.div`
+  position: relative;
+  width: 145px;
+  height: 35px;
+  background: #55877e;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 35px;
+  color: #ffffff;
+  margin: auto;
+  margin-top: 68px;
 `;
 
 const SignUp = () => {
@@ -155,6 +207,17 @@ const SignUp = () => {
           <AgreeText>[선택] 마케팅 정보 수신 동의</AgreeText>
         </Agree>
       </AgreeBox>
+      <AllAgree>
+        <Check2>
+          <img
+            src={`${process.env.PUBLIC_URL}/images/check.png`}
+            alt="check"
+            width="24px"
+          />
+        </Check2>
+        <AgreeText2>전체 동의</AgreeText2>
+      </AllAgree>
+      <Done>가입하기</Done>
     </Background>
   );
 };

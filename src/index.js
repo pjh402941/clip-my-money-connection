@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+=======
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { ThemeProvider } from "styled-components";
@@ -10,6 +19,7 @@ const theme = {
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+>>>>>>> 3b1337aa43e5d3dd07aa698a4537bbb9d2fceb42
 root.render(
   <React.StrictMode>
     <App />
