@@ -120,7 +120,7 @@ const NoSign = () => {
           />
         </Check>
       </NameBox>
-      <Done>입력 완료</Done>
+      <Done>입력 완료!</Done>
     </Background>
   );
 };
