@@ -1,30 +1,33 @@
 import React from "react";
 import styled from "styled-components";
 
-const Background = styled.div`
+const Container = styled.div`
   position: relative;
-  width: 390px;
-  height: 844px;
-  background: #f5f0e4;
+  height: 740px;
+  margin: 0 auto;
+  text-align: center;
+  overflow: auto;
+  background-color: #f5f0e4;
+  -ms-overflow-style: none;
+
+  /* 미디어 쿼리 적용 */
+  @media (hover: hover) {
+    width: 390px;
+    margin: 0 auto;
+  }
 `;
 
 const Topbar = styled.div`
-  display: inline-flex;
-  width: 17px;
-  padding: 11px 360px 11px 13px;
-  align-items: center;
-  gap: 11px;
-  background: #55877e;
+  background-color: #55877e;
+  height: 46px;
+  border-bottom: 1px solid #b3b3b3;
+  box-sizing: border-box;
+  padding-top: 13px;
 `;
 
 const Backbutton = styled.div`
-  display: flex;
-  width: 24px;
-  height: 24px;
-  padding: 4px;
-  justify-content: center;
-  align-items: center;
-  color: #ffffff;
+  position: absolute;
+  left: 13px;
 `;
 
 const Toptitle = styled.div`
@@ -35,7 +38,7 @@ const Toptitle = styled.div`
   font-style: normal;
   font-weight: 800;
   line-height: normal;
-  margin-top: 70px;
+  margin-top: 50px;
 `;
 
 const Bottomtitle = styled.div`
@@ -49,7 +52,7 @@ const Bottomtitle = styled.div`
 `;
 
 const Mainimg = styled.div`
-  margin-left: 70px;
+  margin: 0 auto;
   width: 225px;
   height: 206px;
   flex-shrink: 0;
@@ -64,7 +67,7 @@ const Bottombox = styled.div`
   gap: 20px;
   width: 300px;
   height: 150px;
-  margin-left: 35px;
+  margin: 0 auto;
   margin-top: 20px;
   border-radius: 6px;
   background: #b3dbd4;
@@ -109,6 +112,7 @@ const Writeimg = styled.div`
   justify-content: center;
   align-items: center;
   margin-left: 10px;
+  margin-top: 10px;
 `;
 
 const Writingtext = styled.div`
@@ -117,8 +121,8 @@ const Writingtext = styled.div`
   height: 46px;
   flex-direction: column;
   justify-content: center;
-  margin-left: 60px;
-  margin-top: -33px;
+  margin-left: 55px;
+  margin-top: -30px;
   color: #214a43;
   text-align: center;
   font-family: Inter;
@@ -129,7 +133,7 @@ const Writingtext = styled.div`
 `;
 const Recordstart_ds = () => {
   return (
-    <Background>
+    <Container>
       <Topbar>
         <Backbutton>
           <img src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
@@ -157,11 +161,7 @@ const Recordstart_ds = () => {
           <Writingtext>가계부 작성</Writingtext>
         </Whitebox2>
       </Bottombox>
-    </Background>
+    </Container>
   );
 };
-<<<<<<< HEAD
 export default Recordstart_ds;
-=======
-export default Recordstart_ds;
->>>>>>> 3b1337aa43e5d3dd07aa698a4537bbb9d2fceb42
