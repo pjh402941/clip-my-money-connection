@@ -1,31 +1,33 @@
 import React from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 
-const Background = styled.div`
+const Container = styled.div`
   position: relative;
-  width: 390px;
-  height: 844px;
-  background: #f5f0e4;
+  height: 740px;
+  margin: 0 auto;
+  text-align: center;
+  overflow: auto;
+  background-color: #f5f0e4;
+  -ms-overflow-style: none;
+
+  /* 미디어 쿼리 적용 */
+  @media (hover: hover) {
+    width: 390px;
+    margin: 0 auto;
+  }
 `;
 
 const Topbar = styled.div`
-  display: inline-flex;
-  width: 17px;
-  padding: 11px 360px 11px 13px;
-  align-items: center;
-  gap: 11px;
-  background: #55877e;
+  background-color: #55877e;
+  height: 46px;
+  border-bottom: 1px solid #b3b3b3;
+  box-sizing: border-box;
+  padding-top: 13px;
 `;
 
 const Backbutton = styled.div`
-  display: flex;
-  width: 24px;
-  height: 24px;
-  padding: 4px;
-  justify-content: center;
-  align-items: center;
-  color: #ffffff;
+  position: absolute;
+  left: 13px;
 `;
 
 const Toptitle = styled.div`
@@ -36,7 +38,7 @@ const Toptitle = styled.div`
   font-style: normal;
   font-weight: 800;
   line-height: normal;
-  margin-top: 70px;
+  margin-top: 50px;
 `;
 
 const Bottomtitle = styled.div`
@@ -50,7 +52,7 @@ const Bottomtitle = styled.div`
 `;
 
 const Mainimg = styled.div`
-  margin-left: 70px;
+  margin: 0 auto;
   width: 225px;
   height: 206px;
   flex-shrink: 0;
@@ -64,8 +66,8 @@ const Bottombox = styled.div`
   align-items: center;
   gap: 20px;
   width: 300px;
-  height: 250px;
-  margin-left: 35px;
+  height: 150px;
+  margin: 0 auto;
   margin-top: 20px;
   border-radius: 6px;
   background: #b3dbd4;
@@ -85,47 +87,6 @@ const Listtext = styled.div`
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
-  line-height: normal;
-`;
-
-const Whitebox1 = styled.div`
-  display: flex;
-  width: 200px;
-  height: 70px;
-  flex-direction: column;
-  justify-content: center;
-
-  border-radius: 6px;
-  background: #fff;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-`;
-
-const Celenderimg = styled.div`
-  display: flex;
-  width: 24px;
-  height: 24px;
-  padding: 0px 1px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-left: 10px;
-  gap: 10px;
-`;
-
-const Readingtext = styled.div`
-  display: flex;
-  width: 100px;
-  height: 46px;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 60px;
-  margin-top: -33px;
-  color: #214a43;
-  text-align: center;
-  font-family: Inter;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
   line-height: normal;
 `;
 
@@ -151,6 +112,7 @@ const Writeimg = styled.div`
   justify-content: center;
   align-items: center;
   margin-left: 10px;
+  margin-top: 10px;
 `;
 
 const Writingtext = styled.div`
@@ -159,8 +121,8 @@ const Writingtext = styled.div`
   height: 46px;
   flex-direction: column;
   justify-content: center;
-  margin-left: 60px;
-  margin-top: -33px;
+  margin-left: 55px;
+  margin-top: -30px;
   color: #214a43;
   text-align: center;
   font-family: Inter;
@@ -169,13 +131,11 @@ const Writingtext = styled.div`
   font-weight: 400;
   line-height: normal;
 `;
-const LoginPage = () => {
-  const navigate = useNavigate();
-
+const Recordstart_ds = () => {
   return (
-    <Background>
+    <Container>
       <Topbar>
-        <Backbutton onClick={navigate(-1)}>
+        <Backbutton>
           <img src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
         </Backbutton>
       </Topbar>
@@ -190,15 +150,7 @@ const LoginPage = () => {
 
       <Bottombox>
         <Listtext>목록</Listtext>
-        <Whitebox1>
-          <Celenderimg>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/celender.png`}
-              alt="celender"
-            />
-          </Celenderimg>
-          <Readingtext>가계부 열람</Readingtext>
-        </Whitebox1>
+
         <Whitebox2>
           <Writeimg>
             <img
@@ -209,7 +161,7 @@ const LoginPage = () => {
           <Writingtext>가계부 작성</Writingtext>
         </Whitebox2>
       </Bottombox>
-    </Background>
+    </Container>
   );
 };
-export default LoginPage;
+export default Recordstart_ds;
