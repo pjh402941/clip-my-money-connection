@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   position: relative;
@@ -105,6 +106,28 @@ const CalendarBottom = styled.div`
   margin: 0 auto;
 `;
 
+const SelectBtn = styled.div`
+  display: inline-flex;
+  padding: 6px 36px;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 auto;
+  margin-top: 30px;
+  border-radius: 6px;
+  background: #55877e;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+`;
+
+const SelectText = styled.div`
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
 function ReactCalendar() {
   const [value, onChange] = useState(new Date());
 
@@ -116,6 +139,11 @@ function ReactCalendar() {
 }
 
 const Dayselect = () => {
+  const navigate = useNavigate();
+  const navigateTowrite = () => {
+    navigate("/write");
+  };
+
   return (
     <Container>
       <Topbar>
@@ -147,6 +175,10 @@ const Dayselect = () => {
           alt="celenderbottom"
         />
       </CalendarBottom>
+
+      <SelectBtn onClick={navigateTowrite}>
+        <SelectText>날짜 선택</SelectText>
+      </SelectBtn>
     </Container>
   );
 };

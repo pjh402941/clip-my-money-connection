@@ -156,8 +156,6 @@ const Login = () => {
       id: Id,
       password: Password,
     };
-
-    dispatch(loginUser(body));
   };
 
   return (
