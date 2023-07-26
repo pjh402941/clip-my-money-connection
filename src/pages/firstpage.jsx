@@ -2,30 +2,33 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const Background = styled.div`
+const Container = styled.div`
   position: relative;
-  width: 390px;
-  height: 844px;
-  background: #f5f0e4;
+  height: 740px;
+  margin: 0 auto;
+  text-align: center;
+  overflow: auto;
+  background-color: #f5f0e4;
+  -ms-overflow-style: none;
+
+  /* 미디어 쿼리 적용 */
+  @media (hover: hover) {
+    width: 390px;
+    margin: 0 auto;
+  }
 `;
 
 const Topbar = styled.div`
-  display: inline-flex;
-  width: 17px;
-  padding: 11px 360px 11px 13px;
-  align-items: center;
-  gap: 11px;
-  background: #55877e;
+  background-color: #55877e;
+  height: 46px;
+  border-bottom: 1px solid #b3b3b3;
+  box-sizing: border-box;
+  padding-top: 13px;
 `;
 
 const Backbutton = styled.div`
-  display: flex;
-  width: 24px;
-  height: 24px;
-  padding: 4px;
-  justify-content: center;
-  align-items: center;
-  color: #ffffff;
+  position: absolute;
+  left: 13px;
 `;
 
 const Toptitle = styled.div`
@@ -50,10 +53,9 @@ const Bottomtitle = styled.div`
 `;
 
 const Mainimg = styled.div`
-  margin-left: 70px;
+  margin: 0 auto;
   width: 225px;
   height: 206px;
-  flex-shrink: 0;
 `;
 
 const Box1 = styled.div`
@@ -61,8 +63,8 @@ const Box1 = styled.div`
   background: #b3dbd4;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   width: 80px;
-  margin-left: 60px;
-  margin-top: 60px;
+  margin: 0 auto;
+  margin-top: 30px;
   display: flex;
   padding: 18px 95px;
   justify-content: center;
@@ -91,7 +93,7 @@ const Box2 = styled.div`
   background: #b3dbd4;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   width: 80px;
-  margin-left: 60px;
+  margin: 0 auto;
   margin-top: 40px;
   display: flex;
   padding: 18px 95px;
@@ -121,7 +123,7 @@ const Box3 = styled.div`
   background: #b3dbd4;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   width: 80px;
-  margin-left: 60px;
+  margin: 0 auto;
   margin-top: 40px;
   display: flex;
   padding: 18px 95px;
@@ -148,11 +150,11 @@ const Nonmemblogintext = styled.div`
 const Firstpage = () => {
   const navigate = useNavigate();
   const navigateTologinpage = () => {
-    navigate("/LoginPage");
+    navigate("/login");
   };
 
   return (
-    <Background>
+    <Container>
       <Topbar>
         <Backbutton onClick={navigate(-1)}>
           <img src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
@@ -176,7 +178,7 @@ const Firstpage = () => {
       <Box3 onClick={navigateTologinpage}>
         <Nonmemblogintext>비회원 로그인</Nonmemblogintext>
       </Box3>
-    </Background>
+    </Container>
   );
 };
 export default Firstpage;
