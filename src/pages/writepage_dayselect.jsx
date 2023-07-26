@@ -177,7 +177,7 @@ const Dayselect = () => {
       </CalendarBottom>
 
       <SelectBtn onClick={navigateTowrite}>
-        <SelectText>날짜 선택</SelectText>
+        <SelectText>날짜선택</SelectText>
       </SelectBtn>
     </Container>
   );
