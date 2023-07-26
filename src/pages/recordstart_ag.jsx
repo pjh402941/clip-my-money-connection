@@ -209,8 +209,4 @@ const Recordstart_ag = () => {
     </Background>
   );
 };
-<<<<<<< HEAD
 export default Recordstart_ag;
-=======
-export default Recordstart_ag;
->>>>>>> 3b1337aa43e5d3dd07aa698a4537bbb9d2fceb42
