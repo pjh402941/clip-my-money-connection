@@ -2,49 +2,83 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  /* Container 스타일링 */
   position: relative;
-  height: 100%;
+  height: 740px;
   margin: 0 auto;
   text-align: center;
   overflow: auto;
+  background-color: #f5f0e4;
   -ms-overflow-style: none;
+  font-family: "Inter", sans-serif;
 
   /* 미디어 쿼리 적용 */
   @media (hover: hover) {
-    width: 375px;
+    width: 390px;
     margin: 0 auto;
+  }
+  &::-webkit-scrollbar {
+    display: none;
   }
 `;
 
 const Header = styled.header`
-  /* Header 스타일링 */
+  background-color: #55877e;
+  height: 46px;
+  border-bottom: 1px solid #b3b3b3;
+  box-sizing: border-box;
+  padding-top: 13px;
 `;
 
 const BackButton = styled.img`
-  /* BackButton 스타일링 */
+  position: absolute;
+  left: 13px;
 `;
 
 const Body = styled.div`
-  /* Body 스타일링 */
-  margin: 0;
-  font-family: "YOUR_FONT_FAMILY";
+  height: 100%;
+  margin: 0 20px;
+  margin-top: 59px;
 `;
 
-const Capture = styled.div`
-  /* Capture 스타일링 */
+const Capture = styled.img`
+  border: 1.827px solid #55877e;
+  border-radius: 3.015px;
+  padding: 8px;
 `;
 
 const ActionWrapper = styled.div`
-  /* ActionWrapper 스타일링 */
+  border-radius: 6px;
+  background: #b3dbd4;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 295px;
+  height: 179px;
+  padding: 27px 25px;
+  margin: 0 auto;
+  margin-top: 32px;
 `;
 
 const ShareButton = styled.button`
-  /* ShareButton 스타일링 */
+  border-radius: 6px;
+  border: none;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 143px;
+  height: 27px;
 `;
 
 const ShareBox = styled.div`
-  /* ShareBox 스타일링 */
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-top: 18px;
+  width: 300px;
+  height: 64px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 9.5px;
 `;
 
 const SocialIcon = styled.img`
@@ -68,16 +102,43 @@ const Plus = styled(SocialIcon)`
   /* Plus 스타일링 */
 `;
 
+const LinkWrapper = styled.div`
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-top: 18px;
+  width: 300px;
+  height: 47px;
+  padding: 6px 5px;
+  box-sizing: border-box;
+`;
+
 const LinkBox = styled.div`
-  /* LinkBox 스타일링 */
+  border-radius: 6px;
+  background: #55877e;
+  width: 260px;
+  height: 35px;
+  float: left;
+  position: relative;
 `;
 
 const Link = styled.input`
-  /* Link 스타일링 */
+  border: none;
+  background: #55877e;
+  color: white;
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  height: 15px;
+  width: 242px;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const CopyIcon = styled(SocialIcon)`
-  /* CopyIcon 스타일링 */
+  margin-top: 4px;
+  margin-left: 6px;
 `;
 
 const Share = () => {
@@ -87,7 +148,7 @@ const Share = () => {
         <BackButton src="images/뒤로가기.png" alt="back" width="16px" />
       </Header>
       <Body>
-        <Capture></Capture>
+        <Capture src="images/캡처.png" width="191px"></Capture>
         <ActionWrapper>
           <ShareButton>공유</ShareButton>
           <ShareBox>
@@ -96,10 +157,12 @@ const Share = () => {
             <Message src="images/문자.png" alt="message" width="24px" />
             <Plus src="images/더보기.png" alt="plus" width="24px" />
           </ShareBox>
-          <LinkBox>
-            <Link></Link>
+          <LinkWrapper>
+            <LinkBox>
+              <Link readOnly></Link>
+            </LinkBox>
             <CopyIcon src="images/복사.png" alt="copy" width="24px"></CopyIcon>
-          </LinkBox>
+          </LinkWrapper>
         </ActionWrapper>
       </Body>
     </Container>
