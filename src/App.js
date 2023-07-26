@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Firstpage from "./pages/firstpage";
 import Recordstart_ag from "./pages/recordstart_ag";
@@ -20,3 +21,5 @@ function App() {
 }
 
 export default App;
+=======
+>>>>>>> 0f9e4407befebd44b05784db69c133f545d87ce3
