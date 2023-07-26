@@ -55,13 +55,13 @@ const NameInput = styled.input`
   position: relative;
 
   align-items: center;
-  width: 170px;
+  width: 200px;
   height: 44px;
   background: #ffffff;
   border-radius: 6px;
   border: none;
+  margin: auto;
   margin-top: 17px;
-  margin-left: -38px;
 
   &::placeholder {
     color: #b3dbd4;
@@ -112,15 +112,8 @@ const NoSign = () => {
       <NoMember>비회원 로그인</NoMember>
       <NameBox>
         <NameInput type="text" placeholder="닉네임"></NameInput>
-        <Check>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/check.png`}
-            alt="check"
-            width="24px"
-          />
-        </Check>
       </NameBox>
-      <Done>입력 완료!</Done>
+      <Done>입력 완료</Done>
     </Background>
   );
 };

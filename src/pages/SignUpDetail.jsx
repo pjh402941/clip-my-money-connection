@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Background = styled.div`
   position: relative;
@@ -114,7 +114,7 @@ const Select = styled.select`
   color: #b3dbd4;
 `;
 
-const Done = styled.div`
+const Done = styled.button`
   position: relative;
   width: 140px;
   height: 35px;
@@ -122,10 +122,10 @@ const Done = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 6px;
   font-size: 12px;
-  line-height: 35px;
   color: #ffffff;
   margin: auto;
   margin-top: 68px;
+  border: none;
 `;
 
 const SignUpDetail = () => {
@@ -140,6 +140,12 @@ const SignUpDetail = () => {
     { length: 100 },
     (_, i) => new Date().getFullYear() - i
   );
+
+  const navigate = useNavigate();
+
+  const onClick = () => {
+    navigate(`/Login`);
+  };
 
   return (
     <Background>
@@ -243,7 +249,7 @@ const SignUpDetail = () => {
           ))}
         </Select>
       </InputBox>
-      <Done>회원가입 완료</Done>
+      <Done onClick={onClick}>회원가입 완료</Done>
     </Background>
   );
 };
