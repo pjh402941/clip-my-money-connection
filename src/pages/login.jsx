@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const Background = styled.div`
   position: relative;
@@ -53,7 +54,7 @@ const Person = styled.div`
   margin-top: -23.5px;
 `;
 
-const LoginInput = styled.div`
+const LoginInput = styled.form`
   position: relative;
   margin: auto;
   margin-top: 80px;
@@ -91,7 +92,7 @@ const PwAgain = styled.div`
   color: #55877e;
 `;
 
-const LoginBox = styled.div`
+const LoginBox = styled.button`
   position: relative;
   margin: auto;
   margin-top: 50px;
@@ -100,6 +101,7 @@ const LoginBox = styled.div`
   background: #55877e;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 6px;
+  border: none;
 `;
 
 const Text = styled.div`
@@ -128,7 +130,34 @@ const Login = () => {
   const navigate = useNavigate();
 
   const onClick = () => {
-    navigate(`/SignUp`);
+    navigate(`/SignUpDetail`);
+  };
+
+  const [Id, setId] = useState("");
+  const [Password, setPassword] = useState("");
+
+  const onIdHandler = (event) => {
+    setId(event.currentTarget.value);
+  };
+  const onPasswordHandler = (event) => {
+    setPassword(event.currentTarget.value);
+  };
+
+  const dispatch = useDispatch();
+
+  const onSubmitHandler = (event) => {
+    // 버튼만 누르면 리프레시 되는것을 막아줌
+    event.preventDefault();
+
+    console.log("Id", Id);
+    console.log("Password", Password);
+
+    let body = {
+      id: Id,
+      password: Password,
+    };
+
+    dispatch(loginUser(body));
   };
 
   return (
@@ -152,12 +181,27 @@ const Login = () => {
           />
         </Person>
       </TitleBox>
+      <LoginInput onSubmit={onSubmitHandler}>
+        <IdPwInput
+          type="text"
+          placeholder="아이디"
+          value={Id}
+          onChange={onIdHandler}
+        ></IdPwInput>
+        <IdPwInput
+          type="password"
+          placeholder="비밀번호"
+          value={Password}
+          onChange={onPasswordHandler}
+        ></IdPwInput>
+        <PwAgain>비밀번호 재설정</PwAgain>
+      </LoginInput>
       <LoginInput>
         <IdPwInput type="text" placeholder="아이디"></IdPwInput>
         <IdPwInput type="password" placeholder="비밀번호"></IdPwInput>
-        <PwAgain>비밀번호 재설정</PwAgain>
+        <PwAgain>비밀번호 재설정!</PwAgain>
       </LoginInput>
-      <LoginBox>
+      <LoginBox formAction="">
         <Text>로그인</Text>
       </LoginBox>
       <Join onClick={onClick}>아직 회원이 아니신가요? 회원가입</Join>
