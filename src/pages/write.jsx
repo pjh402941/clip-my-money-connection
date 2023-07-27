@@ -208,10 +208,17 @@ const TotalTag = styled.div``;
 const Total = styled.div``;
 
 const Footer = styled.footer`
+<<<<<<< HEAD
   background: #55877e;
   height: 80px;
   width: 100%;
 `;
+=======
+background: #55877e;
+height: 80px;
+position: sticky;
+width: 100%;`;
+>>>>>>> ef22d3a328383af572c75744d1354548049cd7a6
 
 const ToolBox = styled.div`
   display: flex;
