@@ -207,12 +207,10 @@ const TotalTag = styled.div``;
 const Total = styled.div``;
 
 const Footer = styled.footer`
-  background: #55877e;
-  height: 80px;
-  position: sticky;
-  width: 100%;
-  bottom: 0;
-`;
+background: #55877e;
+height: 80px;
+position: sticky;
+width: 100%;`;
 
 const ToolBox = styled.div`
   display: flex;
@@ -280,7 +278,10 @@ const Write = () => {
   const handleMouseUp = () => {
     setIsDrawing(false);
     // Save the drawing data when the mouse is up
-    setDrawingData((prevDrawingData) => [...prevDrawingData, { x: lastX, y: lastY }]);
+    setDrawingData((prevDrawingData) => [
+      ...prevDrawingData,
+      { x: lastX, y: lastY },
+    ]);
   };
 
   const handleMouseMove = (e) => {
@@ -346,6 +347,19 @@ const Write = () => {
       };
     });
   };
+
+  const [showImagePicker, setShowImagePicker] = useState(false);
+
+  // 이미지 아이콘 클릭 처리 함수
+  const handleImageIconClick = () => {
+    setShowImagePicker(!showImagePicker);
+  };
+
+  // 이미지 선택 처리 함수
+  const handleImageSelect = (e) => {
+    // 이미지 파일을 선택한 후의 로직을 여기에 작성합니다.
+    // 선택한 이미지 파일은 e.target.files를 통해 접근할 수 있습니다.
+  };
   return (
     <Container>
       <BodyWrapper>
@@ -410,7 +424,12 @@ const Write = () => {
               width="24px"
               onClick={handleTextIconClick} // Added onClick handler for text mode
             />
-            <ImageIcon src="images/이미지0.png" alt="image" width="24px" />
+            <ImageIcon
+              src="images/이미지0.png"
+              alt="image"
+              width="24px"
+              onClick={handleImageIconClick}
+            />
             <DrawIcon
               src="images/그리기.png"
               alt="draw"
@@ -440,6 +459,15 @@ const Write = () => {
             onChange={handleColorChange}
           />
         </ColorPickerContainer>
+      )}
+      {/* 파일 선택 창 */}
+      {showImagePicker && (
+        <input
+          type="file"
+          style={{ display: "none" }}
+          onChange={handleImageSelect}
+          ref={(fileInput) => fileInput && fileInput.click()} // 프로그래밍 방식으로 클릭 이벤트 트리거
+        />
       )}
     </Container>
   );
