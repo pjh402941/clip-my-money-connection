@@ -144,7 +144,7 @@ function ReactCalendar() {
   return (
     <div>
       <Calendar
-        locale="en"
+        locale="kr"
         onChange={handleDateChange}
         value={selectedDate}
         onClickDay={handleDateChange}
