@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   position: relative;
-  height: 844px;
-  margin: 0 auto;
   text-align: center;
-  overflow: auto;
   background-color: #f5f0e4;
   -ms-overflow-style: none;
   font-family: "Inter", sans-serif;
@@ -16,14 +16,15 @@ const Container = styled.div`
     width: 390px;
     margin: 0 auto;
   }
+
   &::-webkit-scrollbar {
     display: none;
   }
 `;
 
 const BodyWrapper = styled.div`
-  height:100%;
-  }
+  flex: 1; /* 남은 공간을 채우도록 설정 */
+  overflow: auto; /* 스크롤이 있는 경우 내용을 스크롤합니다. */
 `;
 
 const Header = styled.header`
@@ -209,9 +210,7 @@ const Total = styled.div``;
 const Footer = styled.footer`
   background: #55877e;
   height: 80px;
-  position: sticky;
   width: 100%;
-  bottom: 0;
 `;
 
 const ToolBox = styled.div`
@@ -280,7 +279,10 @@ const Write = () => {
   const handleMouseUp = () => {
     setIsDrawing(false);
     // Save the drawing data when the mouse is up
-    setDrawingData((prevDrawingData) => [...prevDrawingData, { x: lastX, y: lastY }]);
+    setDrawingData((prevDrawingData) => [
+      ...prevDrawingData,
+      { x: lastX, y: lastY },
+    ]);
   };
 
   const handleMouseMove = (e) => {
@@ -346,6 +348,19 @@ const Write = () => {
       };
     });
   };
+
+  const [showImagePicker, setShowImagePicker] = useState(false);
+
+  // 이미지 아이콘 클릭 처리 함수
+  const handleImageIconClick = () => {
+    setShowImagePicker(!showImagePicker);
+  };
+
+  // 이미지 선택 처리 함수
+  const handleImageSelect = (e) => {
+    // 이미지 파일을 선택한 후의 로직을 여기에 작성합니다.
+    // 선택한 이미지 파일은 e.target.files를 통해 접근할 수 있습니다.
+  };
   return (
     <Container>
       <BodyWrapper>
@@ -410,7 +425,12 @@ const Write = () => {
               width="24px"
               onClick={handleTextIconClick} // Added onClick handler for text mode
             />
-            <ImageIcon src="images/이미지0.png" alt="image" width="24px" />
+            <ImageIcon
+              src="images/이미지0.png"
+              alt="image"
+              width="24px"
+              onClick={handleImageIconClick}
+            />
             <DrawIcon
               src="images/그리기.png"
               alt="draw"
@@ -440,6 +460,15 @@ const Write = () => {
             onChange={handleColorChange}
           />
         </ColorPickerContainer>
+      )}
+      {/* 파일 선택 창 */}
+      {showImagePicker && (
+        <input
+          type="file"
+          style={{ display: "none" }}
+          onChange={handleImageSelect}
+          ref={(fileInput) => fileInput && fileInput.click()} // 프로그래밍 방식으로 클릭 이벤트 트리거
+        />
       )}
     </Container>
   );
