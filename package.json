@@ -6,12 +6,12 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-<<<<<<< HEAD
+    "calendar": "^0.1.1",
     "classnames": "^2.3.2",
-=======
     "html2canvas": "^1.4.1",
+    "install": "^0.13.0",
     "moment": "^2.29.4",
->>>>>>> d4480ed62ec77d420fd0fb8f9c76dd2259e3a024
+    "npm": "^9.8.1",
     "react": "^18.2.0",
     "react-calendar": "^4.5.0",
     "react-dom": "^18.2.0",

@@ -149,7 +149,7 @@ const Login = () => {
 
   const handleLogin = () => {
     //승연 언니 페이지랑 연결
-    navigate(`/NoSign`);
+    navigate(`/recordstart_ag`);
   };
 
   return (
