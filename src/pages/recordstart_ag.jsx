@@ -175,7 +175,7 @@ const Recordstart_ag = () => {
     navigate("/read");
   };
   const navigateToWrite = () => {
-    navigate("/write");
+    navigate("/dayselect");
   };
 
   const onClickBtn = () => {
