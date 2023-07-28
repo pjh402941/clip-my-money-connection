@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import moment from "moment";
+import html2canvas from "html2canvas";
+import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
 
 const Container = styled.div`
   display: flex;
@@ -251,18 +254,38 @@ const ColorPickerContainer = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-const Write = () => {
+const Write = ({ setShowWrite, setShowSave }) => {
   const canvasRef = useRef(null);
   const [ctx, setCtx] = useState(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [lastX, setLastX] = useState(0);
   const [lastY, setLastY] = useState(0);
-  const [currentColor, setCurrentColor] = useState("#000"); // Default color is black
+  const [currentColor, setCurrentColor] = useState("#000");
   const [showColorPicker, setShowColorPicker] = useState(false);
-  const [isDrawingMode, setIsDrawingMode] = useState(true); // Added state to handle drawing/text mode
-  const [drawingData, setDrawingData] = useState([]); // State to store drawing data
+  const [isDrawingMode, setIsDrawingMode] = useState(true);
+  const [drawingData, setDrawingData] = useState([]);
+  const navigate = useNavigate(); // Create a navigate function for navigation
 
-  // Effect to initialize canvas context
+
+
+  // 날짜를 형식에 맞게 포맷하여 가져오는 함수
+  const getFormattedDate = () => {
+    const today = moment().format("YYYY . MM . DD ddd");
+    return today;
+  };
+ 
+  // Function to handle SubmitBox click and navigate to Save component
+  const handleSubmitBoxClick = () => {
+    // Use html2canvas library to capture the component as an image
+    html2canvas(document.getElementById("write-component")).then((canvas) => {
+      // Convert the canvas image to data URL
+      const imageDataURL = canvas.toDataURL();
+
+      // Navigate to Save component with the captured image data
+      navigate("/save", { state: { capturedImage: imageDataURL } });
+    });
+  };
+
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
@@ -317,13 +340,11 @@ const Write = () => {
   };
 
   const handleTextIconClick = () => {
-    setIsDrawingMode(false); // Set text mode
-    // Save the current drawing data to preserve the drawn picture
+    setIsDrawingMode(false);
     const canvas = canvasRef.current;
-    const imageDataURL = canvas.toDataURL(); // Get the current state of the canvas as a data URL
+    const imageDataURL = canvas.toDataURL();
     setDrawingData((prevDrawingData) => [...prevDrawingData, imageDataURL]);
   };
-
   // Function to handle DrawIcon click
   const handleDrawIconClick = () => {
     setIsDrawingMode(true); // Set drawing mode
@@ -362,7 +383,7 @@ const Write = () => {
     // 선택한 이미지 파일은 e.target.files를 통해 접근할 수 있습니다.
   };
   return (
-    <Container>
+    <Container id="write-component">
       <BodyWrapper>
         <Header>
           <BackButton src="images/뒤로가기.png" alt="back" width="16px" />
@@ -370,13 +391,9 @@ const Write = () => {
         <Body>
           <form>
             <FormHeader>
-              <Date>2023 . 05 . 15 MON</Date>
-              <SubmitBox>
-                <SubmitIcon
-                  src="images/저장.png"
-                  alt="save"
-                  width="24px"
-                ></SubmitIcon>
+              <Date>{getFormattedDate()}</Date>
+              <SubmitBox onClick={handleSubmitBoxClick}>
+                <SubmitIcon src="images/저장.png" alt="save" width="24px" />
                 <SubmitButton type="submit">저장</SubmitButton>
               </SubmitBox>
             </FormHeader>

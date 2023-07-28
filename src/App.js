@@ -1,23 +1,21 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Firstpage from "./pages/firstpage";
-import Recordstart_ag from "./pages/recordstart_ag";
-import Recordstart_ds from "./pages/recordstart_ds";
-import Dayselect from "./pages/writepage_dayselect";
-import Login from "./pages/login";
-import Write from "./pages/write";
-import Read from "./pages/read";
+// app.js
 
-function App() {
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Write from "./pages/write";
+import Save from "./pages/save";
+import Share from "./pages/share"; // share.jsx 파일을 import 합니다.
+
+const App = () => {
   return (
-    <BrowserRouter>
-      <div>
-        <Routes>
-          <Route path="/" element={<Dayselect />} />
-          <Route path="/write" element={<Write />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Write />} />
+        <Route path="/save" element={<Save />} />
+        <Route path="/share" element={<Share />} /> {/* share.jsx에 대한 Route */}
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
