@@ -289,7 +289,7 @@ const Writeform1 = () => {
               <TodoInsert onClick={navigateTowrite} />
               <Bottombox>
                 <Totaltext>TOTAL</Totaltext>
-                <Totalprice>93700원</Totalprice>
+                <Totalprice>93700 원</Totalprice>
               </Bottombox>
             </FormContent>
           </form>
