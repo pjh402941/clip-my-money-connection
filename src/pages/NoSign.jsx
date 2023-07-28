@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Background = styled.div`
   position: relative;
@@ -55,13 +56,13 @@ const NameInput = styled.input`
   position: relative;
 
   align-items: center;
-  width: 170px;
+  width: 200px;
   height: 44px;
   background: #ffffff;
   border-radius: 6px;
   border: none;
+  margin: auto;
   margin-top: 17px;
-  margin-left: -38px;
 
   &::placeholder {
     color: #b3dbd4;
@@ -90,10 +91,16 @@ const Done = styled.button`
 `;
 
 const NoSign = () => {
+  const navigate = useNavigate();
+
+  const onClickBtn = () => {
+    navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
+  };
+
   return (
     <Background>
       <Top>
-        <Back>
+        <Back onClick={onClickBtn}>
           <img
             src={`${process.env.PUBLIC_URL}/images/back.png`}
             alt="back"
@@ -112,15 +119,8 @@ const NoSign = () => {
       <NoMember>비회원 로그인</NoMember>
       <NameBox>
         <NameInput type="text" placeholder="닉네임"></NameInput>
-        <Check>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/check.png`}
-            alt="check"
-            width="24px"
-          />
-        </Check>
       </NameBox>
-      <Done>입력 완료!</Done>
+      <Done>입력 완료</Done>
     </Background>
   );
 };

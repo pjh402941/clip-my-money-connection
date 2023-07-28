@@ -1,30 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import { useNavigate } from "react-router-dom";
 
-const Background = styled.div`
+const Container = styled.div`
   position: relative;
-  width: 390px;
-  height: 844px;
-  background: #f5f0e4;
+  height: 740px;
+  margin: 0 auto;
+  text-align: center;
+  overflow: auto;
+  background-color: #f5f0e4;
+  -ms-overflow-style: none;
+
+  /* 미디어 쿼리 적용 */
+  @media (hover: hover) {
+    width: 390px;
+    margin: 0 auto;
+  }
 `;
 
 const Topbar = styled.div`
-  display: inline-flex;
-  width: 18px;
-  padding: 11px 360px 11px 13px;
-  align-items: center;
-  gap: 11px;
-  background: #55877e;
+  background-color: #55877e;
+  height: 46px;
+  border-bottom: 1px solid #b3b3b3;
+  box-sizing: border-box;
+  padding-top: 13px;
 `;
 
 const Backbutton = styled.div`
-  display: flex;
-  width: 24px;
-  height: 24px;
-  padding: 4px;
-  justify-content: center;
-  align-items: center;
-  color: #ffffff;
+  position: absolute;
+  left: 13px;
 `;
 
 const Topclip = styled.div`
@@ -48,9 +54,7 @@ const Topgreenbox = styled.div`
 
   width: 190px;
   height: 30px;
-
   margin: 0 auto;
-  margin-left: 100px;
   margin-top: 70px;
   border-radius: 6px;
   background: #55877e;
@@ -81,9 +85,67 @@ const Celendericon = styled.div`
   margin: 0 auto;
   margin-top: 2px;
 `;
-const Dayselect = () => {
+
+const Calendarbox = styled.div`
+  width: 300px;
+  padding: 12px 26px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 11px;
+  margin: 0 auto;
+  margin-top: 50px;
+
+  border-radius: 6px;
+  background: #55877e;
+`;
+
+const CalendarBottom = styled.div`
+  height: 19.5px;
+  flex-shrink: 0;
+  margin: 0 auto;
+`;
+
+const SelectBtn = styled.div`
+  display: inline-flex;
+  padding: 6px 36px;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 auto;
+  margin-top: 30px;
+  border-radius: 6px;
+  background: #55877e;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+`;
+
+const SelectText = styled.div`
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+function ReactCalendar() {
+  const [value, onChange] = useState(new Date());
+
   return (
-    <Background>
+    <div>
+      <Calendar onChange={onChange} value={value} />
+    </div>
+  );
+}
+
+const Dayselect = () => {
+  const navigate = useNavigate();
+  const navigateTowrite = () => {
+    navigate("/write");
+  };
+
+  return (
+    <Container>
       <Topbar>
         <Backbutton>
           <img src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
@@ -104,11 +166,20 @@ const Dayselect = () => {
           />
         </Celendericon>
       </Topgreenbox>
-    </Background>
+      <Calendarbox>
+        <ReactCalendar></ReactCalendar>
+      </Calendarbox>
+      <CalendarBottom>
+        <img
+          src={`${process.env.PUBLIC_URL}/images/calendarbottom.png`}
+          alt="celenderbottom"
+        />
+      </CalendarBottom>
+
+      <SelectBtn onClick={navigateTowrite}>
+        <SelectText>날짜 선택</SelectText>
+      </SelectBtn>
+    </Container>
   );
 };
-<<<<<<< HEAD
 export default Dayselect;
-=======
-export default Dayselect;
->>>>>>> 3b1337aa43e5d3dd07aa698a4537bbb9d2fceb42

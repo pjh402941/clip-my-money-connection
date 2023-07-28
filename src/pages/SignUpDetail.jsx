@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Background = styled.div`
   position: relative;
@@ -69,24 +69,18 @@ const InputBox = styled.div`
 const Input = styled.input`
   position: relative;
   align-items: center;
-  width: 250px;
+  width: 285px;
   height: 32px;
   background: #ffffff;
   border-radius: 6px;
   border: none;
+  margin: auto;
   margin-top: 9px;
-  margin-left: -34px;
 
   &::placeholder {
     color: #b3dbd4;
     padding-left: 10px;
   }
-`;
-
-const Check = styled.div`
-  position: relative;
-  margin-left: 266px;
-  margin-top: -29px;
 `;
 
 const Select = styled.select`
@@ -114,7 +108,7 @@ const Select = styled.select`
   color: #b3dbd4;
 `;
 
-const Done = styled.div`
+const Done = styled.button`
   position: relative;
   width: 140px;
   height: 35px;
@@ -122,10 +116,10 @@ const Done = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 6px;
   font-size: 12px;
-  line-height: 35px;
   color: #ffffff;
   margin: auto;
   margin-top: 68px;
+  border: none;
 `;
 
 const SignUpDetail = () => {
@@ -141,10 +135,20 @@ const SignUpDetail = () => {
     (_, i) => new Date().getFullYear() - i
   );
 
+  const navigate = useNavigate();
+
+  const onClick = () => {
+    navigate(`/Login`);
+  };
+
+  const onClickBtn = () => {
+    navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
+  };
+
   return (
     <Background>
       <Top>
-        <Back>
+        <Back onClick={onClickBtn}>
           <img
             src={`${process.env.PUBLIC_URL}/images/back.png`}
             alt="back"
@@ -164,53 +168,18 @@ const SignUpDetail = () => {
       </TitleBox>
       <InputBox>
         <Input type="text" placeholder="이름"></Input>
-        <Check>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/check.png`}
-            alt="check"
-            width="24px"
-          />
-        </Check>
       </InputBox>
       <InputBox>
         <Input type="text" placeholder="닉네임"></Input>
-        <Check>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/check.png`}
-            alt="check"
-            width="24px"
-          />
-        </Check>
       </InputBox>
       <InputBox>
         <Input type="text" placeholder="아이디"></Input>
-        <Check>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/check.png`}
-            alt="check"
-            width="24px"
-          />
-        </Check>
       </InputBox>
       <InputBox>
         <Input type="text" placeholder="비밀번호"></Input>
-        <Check>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/check.png`}
-            alt="check"
-            width="24px"
-          />
-        </Check>
       </InputBox>
       <InputBox>
         <Input type="phone" placeholder="전화번호"></Input>
-        <Check>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/check.png`}
-            alt="check"
-            width="24px"
-          />
-        </Check>
       </InputBox>
       <InputBox>
         {/* 년도 드롭다운 */}
@@ -243,7 +212,7 @@ const SignUpDetail = () => {
           ))}
         </Select>
       </InputBox>
-      <Done>회원가입 완료</Done>
+      <Done onClick={onClick}>회원가입 완료</Done>
     </Background>
   );
 };
