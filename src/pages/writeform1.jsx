@@ -3,6 +3,7 @@ import styled from "styled-components";
 import TodoTemplate from "./TodoTemplate";
 import TodoInsert from "./TodoInsert";
 import TodoList from "./TodoList";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   position: relative;
@@ -230,18 +231,10 @@ const Writeform1 = () => {
 
   const nextId = useRef(4);
 
-  const onInsert = useCallback(
-    (text) => {
-      const todo = {
-        id: nextId.current,
-        text,
-        checked: false,
-      };
-      setTodos(todos.concat(todo));
-      nextId.current += 1;
-    },
-    [todos]
-  );
+  const navigate = useNavigate();
+  const navigateTowrite = () => {
+    navigate("/write");
+  };
 
   const onRemove = useCallback(
     (id) => {
@@ -293,7 +286,7 @@ const Writeform1 = () => {
                   onToggle={onToggle}
                 />
               </TodoTemplate>
-              <TodoInsert onInsert={onInsert} />
+              <TodoInsert onClick={navigateTowrite} />
               <Bottombox>
                 <Totaltext>TOTAL</Totaltext>
                 <Totalprice>93700원</Totalprice>
