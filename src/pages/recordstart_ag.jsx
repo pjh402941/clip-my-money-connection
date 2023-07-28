@@ -1,33 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 
-const Container = styled.div`
+const Background = styled.div`
   position: relative;
-  height: 740px;
-  margin: 0 auto;
-  text-align: center;
-  overflow: auto;
-  background-color: #f5f0e4;
-  -ms-overflow-style: none;
-
-  /* 미디어 쿼리 적용 */
-  @media (hover: hover) {
-    width: 390px;
-    margin: 0 auto;
-  }
+  width: 390px;
+  height: 844px;
+  background: #f5f0e4;
 `;
 
 const Topbar = styled.div`
-  background-color: #55877e;
-  height: 46px;
-  border-bottom: 1px solid #b3b3b3;
-  box-sizing: border-box;
-  padding-top: 13px;
+  display: inline-flex;
+  width: 17px;
+  padding: 11px 360px 11px 13px;
+  align-items: center;
+  gap: 11px;
+  background: #55877e;
 `;
 
 const Backbutton = styled.div`
-  position: absolute;
-  left: 13px;
+  display: flex;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
 `;
 
 const Toptitle = styled.div`
@@ -38,7 +35,7 @@ const Toptitle = styled.div`
   font-style: normal;
   font-weight: 800;
   line-height: normal;
-  margin-top: 50px;
+  margin-top: 70px;
 `;
 
 const Bottomtitle = styled.div`
@@ -52,7 +49,7 @@ const Bottomtitle = styled.div`
 `;
 
 const Mainimg = styled.div`
-  margin: 0 auto;
+  margin-left: 70px;
   width: 225px;
   height: 206px;
   flex-shrink: 0;
@@ -67,7 +64,7 @@ const Bottombox = styled.div`
   gap: 20px;
   width: 300px;
   height: 250px;
-  margin: 0 auto;
+  margin-left: 35px;
   margin-top: 20px;
   border-radius: 6px;
   background: #b3dbd4;
@@ -76,7 +73,6 @@ const Bottombox = styled.div`
 
 const Listtext = styled.div`
   display: flex;
-  margin: 0 auto;
   margin-top: -30px;
   width: 300px;
   height: 50px;
@@ -174,7 +170,7 @@ const Writingtext = styled.div`
 `;
 const Recordstart_ag = () => {
   return (
-    <Container>
+    <Background>
       <Topbar>
         <Backbutton>
           <img src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
@@ -210,7 +206,7 @@ const Recordstart_ag = () => {
           <Writingtext>가계부 작성</Writingtext>
         </Whitebox2>
       </Bottombox>
-    </Container>
+    </Background>
   );
 };
 export default Recordstart_ag;
