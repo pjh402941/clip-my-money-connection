@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Background = styled.div`
   position: relative;
@@ -169,10 +170,22 @@ const Writingtext = styled.div`
   line-height: normal;
 `;
 const Recordstart_ag = () => {
+  const navigate = useNavigate();
+  const navigateToRead = () => {
+    navigate("/read");
+  };
+  const navigateToWrite = () => {
+    navigate("/write");
+  };
+
+  const onClickBtn = () => {
+    navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
+  };
+
   return (
     <Background>
       <Topbar>
-        <Backbutton>
+        <Backbutton onClick={onClickBtn}>
           <img src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
         </Backbutton>
       </Topbar>
@@ -194,7 +207,7 @@ const Recordstart_ag = () => {
               alt="celender"
             />
           </Celenderimg>
-          <Readingtext>가계부 열람</Readingtext>
+          <Readingtext onClick={navigateToRead}>가계부 열람</Readingtext>
         </Whitebox1>
         <Whitebox2>
           <Writeimg>
@@ -203,7 +216,7 @@ const Recordstart_ag = () => {
               alt="write"
             />
           </Writeimg>
-          <Writingtext>가계부 작성</Writingtext>
+          <Writingtext onClick={navigateToWrite}>가계부 작성</Writingtext>
         </Whitebox2>
       </Bottombox>
     </Background>
