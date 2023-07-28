@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   position: relative;
-  height: 740px;
-  margin: 0 auto;
   text-align: center;
-  overflow: auto;
   background-color: #f5f0e4;
   -ms-overflow-style: none;
   font-family: "Inter", sans-serif;
@@ -16,11 +16,15 @@ const Container = styled.div`
     width: 390px;
     margin: 0 auto;
   }
-  ::-webkit-scrollbar {
+
+  &::-webkit-scrollbar {
     display: none;
   }
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+`;
+
+const BodyWrapper = styled.div`
+  flex: 1; /* 남은 공간을 채우도록 설정 */
+  overflow: auto; /* 스크롤이 있는 경우 내용을 스크롤합니다. */
 `;
 
 const Header = styled.header`
@@ -105,6 +109,7 @@ const FormContent = styled.div`
   margin-top: 10px;
   box-shadow: 2px 0 8px #b8b5ac, -2px 0 8px #b8b5ac;
 `;
+
 const Bottom = styled.img`
   width: 100%;
   margin-top: -5px;
@@ -129,47 +134,118 @@ const Title = styled.input`
   }
 `;
 
-const Content = styled.textarea`
+const Content = styled.div`
   width: 95%;
-  height: 48vh;
-  border: none;
-  resize: none;
+  height: 60vh;
   border-radius: 6px;
+  margin: auto;
   margin-top: 30px;
+  background-color: white;
   font-family: "Inter", sans-serif;
   -ms-overflow-style: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  &:focus {
-    outline: none;
-  }
+  padding-bottom: 23px;
 `;
+const TextArea = styled.textarea`
+  width: 80%;
+  height: 21vh;
+  border: none;
+  resize: none;
+  font-family: "Inter", sans-serif;
+  -ms-overflow-style: none;
+  background-color: transparent;
+  position: absolute;
+  /* top: 273px; */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 373px;
+`;
+const ImgBox = styled.div`
+  margin: 0 auto;
+  height: auto;
+  width: 70%;
+  border-radius: 6px;
+  border: 2px solid #55877e;
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 20px 17px 10px 17px;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 152px;
+`;
+
+const ImgUpload = styled.img`
+  padding-bottom: 10px;
+`;
+const TotalBox = styled.div`
+  margin: 0 auto;
+  height: auto;
+  width: 79%;
+  border-radius: 6px;
+  border: 2px solid #55877e;
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: 11px 65px;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 281px;
+`;
+
+const TotalTag = styled.div``;
+
+const Total = styled.div``;
 
 const Read = () => {
   return (
     <Container>
-      <Header>
-        <BackButton src="images/뒤로가기.png" alt="back" width="16px" />
-      </Header>
-      <Body>
-        <form>
-          <FormHeader>
-            <Date>2023 . 05 . 15 MON</Date>
-            <UpdateBox>
-              <UpdateButton type="submit">수정하기</UpdateButton>
-            </UpdateBox>
-          </FormHeader>
-          <FormContentWrapper>
-            <FormContent>
-              <Title name="title" />
-              <Content name="content" />
-              {/* canvas */}
-            </FormContent>
-          </FormContentWrapper>
-        </form>
-        <Bottom src="images/Bottom.png"></Bottom>
-      </Body>
+      <BodyWrapper>
+        <Header>
+          <BackButton src="images/뒤로가기.png" alt="back" width="16px" />
+        </Header>
+        <Body>
+          <form>
+            <FormHeader>
+              <Date>2023 . 05 . 15 MON</Date>
+              <UpdateBox>
+                <UpdateButton type="submit">수정하기</UpdateButton>
+              </UpdateBox>
+            </FormHeader>
+            <FormContentWrapper>
+              <FormContent>
+                <Title name="title" />
+                <Content name="content">
+                  <TextArea></TextArea>
+                  <ImgBox>
+                    <ImgUpload src="images/샘플.png" width="72px"></ImgUpload>
+                    <ImgUpload src="images/샘플.png" width="72px"></ImgUpload>
+                    <ImgUpload src="images/샘플.png" width="72px"></ImgUpload>
+                    <ImgUpload src="images/샘플.png" width="72px"></ImgUpload>
+                    <ImgUpload src="images/샘플.png" width="72px"></ImgUpload>
+                    <ImgUpload src="images/샘플.png" width="72px"></ImgUpload>
+                  </ImgBox>
+                  <TotalBox>
+                    <TotalTag>Total</TotalTag>
+                    <Total>00won</Total>
+                  </TotalBox>
+                </Content>
+              </FormContent>
+            </FormContentWrapper>
+          </form>
+          <Bottom src="images/Bottom.png"></Bottom>
+        </Body>
+      </BodyWrapper>
     </Container>
   );
 };
