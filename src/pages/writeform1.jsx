@@ -214,7 +214,7 @@ const Writeform1 = () => {
   const [todos, setTodos] = useState([
     {
       id: 1,
-      text: "아이스 아메리카노 3700원",
+      text: "아이스아메리카노 3700원",
       checked: true,
     },
     {
