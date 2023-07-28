@@ -189,6 +189,10 @@ const SignUp = () => {
     navigate(`/SignUpDetail`);
   };
 
+  const onClickBtn = () => {
+    navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
+  };
+
   const [allCheck, setAllCheck] = useState(false);
   const [ageCheck, setAgeCheck] = useState(false);
   const [useCheck, setUseCheck] = useState(false);
@@ -243,7 +247,7 @@ const SignUp = () => {
   return (
     <Background>
       <Top>
-        <Back>
+        <Back onClick={onClickBtn}>
           <img
             src={`${process.env.PUBLIC_URL}/images/back.png`}
             alt="back"

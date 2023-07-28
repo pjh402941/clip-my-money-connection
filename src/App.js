@@ -1,19 +1,26 @@
-<<<<<<< HEAD
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Firstpage from "./pages/firstpage";
-import Recordstart_ag from "./pages/recordstart_ag";
-import Recordstart_ds from "./pages/recordstart_ds";
-import Dayselect from "./pages/writepage_dayselect";
 import Login from "./pages/login";
-import Write from "./pages/write";
+import SignUp from "./pages/signup";
+import SignUpDetail from "./pages/SignUpDetail";
+import NoSign from "./pages/NoSign";
+import "./App.css";
 
 function App() {
   return (
     <BrowserRouter>
-      <div>
+      <div
+        style={{
+          // maxWidth: "1280px",
+          margin: "0px auto",
+          minHeight: "100vh",
+          position: "relative",
+        }}
+      >
         <Routes>
-          <Route path="/" element={<Dayselect />} />
-          <Route path="/write" element={<Write />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signupdetail" element={<SignUpDetail />} />
+          <Route path="/nosign" element={<NoSign />} />
         </Routes>
       </div>
     </BrowserRouter>
@@ -21,5 +28,3 @@ function App() {
 }
 
 export default App;
-=======
->>>>>>> 0f9e4407befebd44b05784db69c133f545d87ce3
