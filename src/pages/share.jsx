@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom"; // useLocation 추가
+import { useLocation, useNavigate } from "react-router-dom"; // useLocation 추가
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -45,6 +45,7 @@ const Capture = styled.img`
   border: 1.827px solid #55877e;
   border-radius: 3.015px;
   padding: 8px;
+  width: 210px;
 `;
 
 const ActionWrapper = styled.div`
@@ -152,10 +153,21 @@ const Share = () => {
     }
   }, [location.state]);
 
+  const navigate = useNavigate();
+
+  const onClickBtn = () => {
+    navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
+  };
+
   return (
     <Container>
       <Header>
-        <BackButton src="images/뒤로가기.png" alt="back" width="16px" />
+        <BackButton
+          onClick={onClickBtn}
+          src="images/뒤로가기.png"
+          alt="back"
+          width="16px"
+        />
       </Header>
       <Body>
         {capturedImageUrl && <Capture src={capturedImageUrl} alt="Captured" />}

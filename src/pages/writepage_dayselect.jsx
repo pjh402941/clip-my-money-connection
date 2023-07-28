@@ -144,7 +144,7 @@ function ReactCalendar() {
   return (
     <div>
       <Calendar
-        locale="en"
+        locale="kr"
         onChange={handleDateChange}
         value={selectedDate}
         onClickDay={handleDateChange}
@@ -161,10 +161,14 @@ const Dayselect = () => {
     navigate("/write");
   };
 
+  const onClickBtn = () => {
+    navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
+  };
+
   return (
     <Container>
       <Topbar>
-        <Backbutton>
+        <Backbutton onClick={onClickBtn}>
           <img src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
         </Backbutton>
       </Topbar>

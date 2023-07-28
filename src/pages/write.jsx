@@ -266,14 +266,12 @@ const Write = ({ setShowWrite, setShowSave }) => {
   const [drawingData, setDrawingData] = useState([]);
   const navigate = useNavigate(); // Create a navigate function for navigation
 
-
-
   // 날짜를 형식에 맞게 포맷하여 가져오는 함수
   const getFormattedDate = () => {
     const today = moment().format("YYYY . MM . DD ddd");
     return today;
   };
- 
+
   // Function to handle SubmitBox click and navigate to Save component
   const handleSubmitBoxClick = () => {
     // Use html2canvas library to capture the component as an image
@@ -382,11 +380,25 @@ const Write = ({ setShowWrite, setShowSave }) => {
     // 이미지 파일을 선택한 후의 로직을 여기에 작성합니다.
     // 선택한 이미지 파일은 e.target.files를 통해 접근할 수 있습니다.
   };
+
+  const onClickBtn = () => {
+    navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
+  };
+
+  const hi = () => {
+    navigate(`/writeform1`);
+  };
+
   return (
     <Container id="write-component">
       <BodyWrapper>
         <Header>
-          <BackButton src="images/뒤로가기.png" alt="back" width="16px" />
+          <BackButton
+            onClick={onClickBtn}
+            src="images/뒤로가기.png"
+            alt="back"
+            width="16px"
+          />
         </Header>
         <Body>
           <form>
@@ -464,6 +476,7 @@ const Write = ({ setShowWrite, setShowSave }) => {
               src="images/레이아웃 양식.png"
               alt="layout"
               width="24px"
+              onClick={hi}
             />
           </ToolBox>
         </Footer>
