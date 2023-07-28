@@ -6,11 +6,11 @@ import TodoList from "./TodoList";
 import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   position: relative;
-  height: 740px;
-  margin: 0 auto;
   text-align: center;
-  overflow: auto;
   background-color: #f5f0e4;
   -ms-overflow-style: none;
   font-family: "Inter", sans-serif;
@@ -20,14 +20,15 @@ const Container = styled.div`
     width: 390px;
     margin: 0 auto;
   }
+
   &::-webkit-scrollbar {
     display: none;
   }
 `;
 
 const BodyWrapper = styled.div`
-  height:100%;
-  }
+  flex: 1; /* 남은 공간을 채우도록 설정 */
+  overflow: auto; /* 스크롤이 있는 경우 내용을 스크롤합니다. */
 `;
 
 const Header = styled.header`
@@ -139,9 +140,9 @@ const Title = styled.input`
 const Footer = styled.footer`
   background: #55877e;
   height: 80px;
-  position: sticky;
   width: 100%;
-  margin-top: 25px;
+  position: fixed;
+  bottom: 0;
 `;
 
 const ToolBox = styled.div`
@@ -214,7 +215,7 @@ const Writeform1 = () => {
   const [todos, setTodos] = useState([
     {
       id: 1,
-      text: "아이스 아메리카노 3700원",
+      text: "아이스아메리카노 3700원",
       checked: true,
     },
     {
@@ -254,11 +255,20 @@ const Writeform1 = () => {
     [todos]
   );
 
+  const onClickBtn = () => {
+    navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
+  };
+
   return (
     <Container>
       <BodyWrapper>
         <Header>
-          <BackButton src="images/뒤로가기.png" alt="back" width="16px" />
+          <BackButton
+            onClick={onClickBtn}
+            src="images/뒤로가기.png"
+            alt="back"
+            width="16px"
+          />
         </Header>
         <Body>
           <form>
@@ -289,7 +299,7 @@ const Writeform1 = () => {
               <TodoInsert onClick={navigateTowrite} />
               <Bottombox>
                 <Totaltext>TOTAL</Totaltext>
-                <Totalprice>93700원</Totalprice>
+                <Totalprice>93700 원</Totalprice>
               </Bottombox>
             </FormContent>
           </form>
