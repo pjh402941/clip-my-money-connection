@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useLocation, useNavigate } from "react-router-dom"; // useHistory 대신 useNavigate로 변경
-
+import { useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -110,9 +110,8 @@ const ShareText = styled.p`
 const Save = () => {
   const [popup, setPopup] = useState(false);
   const location = useLocation();
-  const [capturedImage, setCapturedImage] = useState(null);
+  const [capturedImage, setCapturedImage] = useState(null); // capturedImage 상태 선언
   const navigate = useNavigate();
-
 
   useEffect(() => {
     if (location.state && location.state.capturedImage) {
@@ -127,12 +126,10 @@ const Save = () => {
     }, 3000);
   };
 
-  // ShareBox를 클릭했을 때 share 페이지로 이동하는 함수
   const handleShareBoxClick = () => {
-    // '/share' 경로로 이동합니다.
-    navigate("/share");
+    // Link 컴포넌트를 사용하여 /share 경로로 이동하고 capturedImage를 상태로 전달합니다.
+    navigate("/share", { state: { capturedImage: capturedImage } });
   };
-
 
   // 사용자가 이미지를 저장하는 함수
   const handleSaveImage = () => {
@@ -167,13 +164,15 @@ const Save = () => {
         <Body>
           {capturedImage && <Capture src={capturedImage} width="191px" />}
           <ActionWrapper onClick={showPopup}>
-            <SaveBox onClick={handleSaveImage}>
+            <SaveBox onClick={() => handleSaveImage()}>
+              {" "}
+              {/* 이 부분을 수정 */}
+              {/* handleSaveImage 함수를 즉시 호출하도록 수정 */}
               <SaveIcon src="images/저장.png" alt="save" width="24px" />
               <SaveText>이미지로 저장</SaveText>
             </SaveBox>
             <ShareBox onClick={handleShareBoxClick}>
-              {" "}
-              {/* ShareBox 클릭 시 handleShareBoxClick 함수 호출 */}
+              {/* handleShareBoxClick 함수를 즉시 호출하도록 수정 */}
               <ShareIcon src="images/공유.png" alt="share" width="24px" />
               <ShareText>공유하기</ShareText>
             </ShareBox>
