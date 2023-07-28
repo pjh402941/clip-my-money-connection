@@ -194,7 +194,11 @@ const Recordstart_ag = () => {
     navigate("/read");
   };
   const navigateToWrite = () => {
+<<<<<<< HEAD
     navigate("/Dayselect");
+=======
+    navigate("/dayselect");
+>>>>>>> bcedc7cdb40e6429198dab915908905294e226fc
   };
 
   const onClickBtn = () => {
