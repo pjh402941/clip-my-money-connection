@@ -381,6 +381,10 @@ const Write = ({ setShowWrite, setShowSave }) => {
     // 선택한 이미지 파일은 e.target.files를 통해 접근할 수 있습니다.
   };
 
+  const handleLayoutIconClick = () => {
+    navigate("/Writeform1");
+  };
+
   const onClickBtn = () => {
     navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
   };
@@ -405,8 +409,15 @@ const Write = ({ setShowWrite, setShowSave }) => {
             <FormHeader>
               <Date>{getFormattedDate()}</Date>
               <SubmitBox onClick={handleSubmitBoxClick}>
-                <SubmitIcon src="images/저장.png" alt="save" width="24px" />
-                <SubmitButton type="submit">저장</SubmitButton>
+                <SubmitIcon
+                  onClick={handleSubmitBoxClick}
+                  src="images/저장.png"
+                  alt="save"
+                  width="24px"
+                />
+                <SubmitButton onClick={handleSubmitBoxClick} type="submit">
+                  저장
+                </SubmitButton>
               </SubmitBox>
             </FormHeader>
             <FormContent>
@@ -476,7 +487,11 @@ const Write = ({ setShowWrite, setShowSave }) => {
               src="images/레이아웃 양식.png"
               alt="layout"
               width="24px"
+<<<<<<< HEAD
+              onClick={handleLayoutIconClick}
+=======
               onClick={hi}
+>>>>>>> bcedc7cdb40e6429198dab915908905294e226fc
             />
           </ToolBox>
         </Footer>

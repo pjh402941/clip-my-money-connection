@@ -8,19 +8,28 @@ import "./Calendarstyle.css";
 //import moment from "moment";
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   position: relative;
-  height: 740px;
-  margin: 0 auto;
   text-align: center;
-  overflow: auto;
   background-color: #f5f0e4;
   -ms-overflow-style: none;
+  font-family: "Inter", sans-serif;
 
   /* 미디어 쿼리 적용 */
   @media (hover: hover) {
     width: 390px;
     margin: 0 auto;
   }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+const BodyWrapper = styled.div`
+  flex: 1; /* 남은 공간을 채우도록 설정 */
+  overflow: auto; /* 스크롤이 있는 경우 내용을 스크롤합니다. */
 `;
 
 const Topbar = styled.div`
@@ -167,34 +176,36 @@ const Dayselect = () => {
 
   return (
     <Container>
-      <Topbar>
-        <Backbutton onClick={onClickBtn}>
-          <img src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
-        </Backbutton>
-      </Topbar>
-      <Topgreenbox>
-        <Topclip>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/topclip.png`}
-            alt="topclip"
-          />
-        </Topclip>
-        <Toptitletext>나의 가계부 달력</Toptitletext>
-        <Celendericon>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/celender2.png`}
-            alt="celender2"
-          />
-        </Celendericon>
-      </Topgreenbox>
+      <BodyWrapper>
+        <Topbar>
+          <Backbutton onClick={onClickBtn}>
+            <img src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
+          </Backbutton>
+        </Topbar>
+        <Topgreenbox>
+          <Topclip>
+            <img
+              src={`${process.env.PUBLIC_URL}/images/topclip.png`}
+              alt="topclip"
+            />
+          </Topclip>
+          <Toptitletext>나의 가계부 달력</Toptitletext>
+          <Celendericon>
+            <img
+              src={`${process.env.PUBLIC_URL}/images/celender2.png`}
+              alt="celender2"
+            />
+          </Celendericon>
+        </Topgreenbox>
 
-      <Calendarbox>
-        <ReactCalendar></ReactCalendar>
-      </Calendarbox>
+        <Calendarbox>
+          <ReactCalendar></ReactCalendar>
+        </Calendarbox>
 
-      <SelectBtn onClick={navigateTowrite}>
-        <SelectText>날짜 선택</SelectText>
-      </SelectBtn>
+        <SelectBtn onClick={navigateTowrite}>
+          <SelectText>날짜 선택</SelectText>
+        </SelectBtn>
+      </BodyWrapper>
     </Container>
   );
 };
