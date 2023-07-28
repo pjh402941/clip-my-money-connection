@@ -6,11 +6,11 @@ import TodoList from "./TodoList";
 import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   position: relative;
-  height: 740px;
-  margin: 0 auto;
   text-align: center;
-  overflow: auto;
   background-color: #f5f0e4;
   -ms-overflow-style: none;
   font-family: "Inter", sans-serif;
@@ -20,14 +20,15 @@ const Container = styled.div`
     width: 390px;
     margin: 0 auto;
   }
+
   &::-webkit-scrollbar {
     display: none;
   }
 `;
 
 const BodyWrapper = styled.div`
-  height:100%;
-  }
+  flex: 1; /* 남은 공간을 채우도록 설정 */
+  overflow: auto; /* 스크롤이 있는 경우 내용을 스크롤합니다. */
 `;
 
 const Header = styled.header`
@@ -139,9 +140,9 @@ const Title = styled.input`
 const Footer = styled.footer`
   background: #55877e;
   height: 80px;
-  position: sticky;
   width: 100%;
-  margin-top: 25px;
+  position: fixed;
+  bottom: 0;
 `;
 
 const ToolBox = styled.div`

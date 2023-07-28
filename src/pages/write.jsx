@@ -385,6 +385,10 @@ const Write = ({ setShowWrite, setShowSave }) => {
     navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
   };
 
+  const hi = () => {
+    navigate(`/writeform1`);
+  };
+
   return (
     <Container id="write-component">
       <BodyWrapper>
@@ -472,6 +476,7 @@ const Write = ({ setShowWrite, setShowSave }) => {
               src="images/레이아웃 양식.png"
               alt="layout"
               width="24px"
+              onClick={hi}
             />
           </ToolBox>
         </Footer>
