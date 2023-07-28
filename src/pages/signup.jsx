@@ -16,7 +16,7 @@ const Top = styled.div`
   background: #55877e;
 `;
 
-const BackButton = styled.div`
+const Back = styled.div`
   position: relative;
   margin-left: -90%;
   padding-top: 15px;
@@ -189,6 +189,10 @@ const SignUp = () => {
     navigate(`/SignUpDetail`);
   };
 
+  const onClickBtn = () => {
+    navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
+  };
+
   const [allCheck, setAllCheck] = useState(false);
   const [ageCheck, setAgeCheck] = useState(false);
   const [useCheck, setUseCheck] = useState(false);
@@ -243,13 +247,13 @@ const SignUp = () => {
   return (
     <Background>
       <Top>
-        <BackButton>
+        <Back onClick={onClickBtn}>
           <img
             src={`${process.env.PUBLIC_URL}/images/back.png`}
             alt="back"
             width="18px"
           />
-        </BackButton>
+        </Back>
       </Top>
       <TitleBox>
         <Title>회원가입</Title>

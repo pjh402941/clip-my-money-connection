@@ -16,7 +16,7 @@ const Top = styled.div`
   background: #55877e;
 `;
 
-const BackButton = styled.div`
+const Back = styled.div`
   position: relative;
   margin-left: -90%;
   padding-top: 15px;
@@ -69,24 +69,18 @@ const InputBox = styled.div`
 const Input = styled.input`
   position: relative;
   align-items: center;
-  width: 250px;
+  width: 285px;
   height: 32px;
   background: #ffffff;
   border-radius: 6px;
   border: none;
+  margin: auto;
   margin-top: 9px;
-  margin-left: -34px;
 
   &::placeholder {
     color: #b3dbd4;
     padding-left: 10px;
   }
-`;
-
-const Check = styled.div`
-  position: relative;
-  margin-left: 266px;
-  margin-top: -29px;
 `;
 
 const Select = styled.select`
@@ -147,16 +141,20 @@ const SignUpDetail = () => {
     navigate(`/Login`);
   };
 
+  const onClickBtn = () => {
+    navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
+  };
+
   return (
     <Background>
       <Top>
-        <BackButton>
+        <Back onClick={onClickBtn}>
           <img
             src={`${process.env.PUBLIC_URL}/images/back.png`}
             alt="back"
             width="18px"
           />
-        </BackButton>
+        </Back>
       </Top>
       <TitleBox>
         <Title>회원가입</Title>
@@ -170,53 +168,18 @@ const SignUpDetail = () => {
       </TitleBox>
       <InputBox>
         <Input type="text" placeholder="이름"></Input>
-        <Check>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/check.png`}
-            alt="check"
-            width="24px"
-          />
-        </Check>
       </InputBox>
       <InputBox>
         <Input type="text" placeholder="닉네임"></Input>
-        <Check>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/check.png`}
-            alt="check"
-            width="24px"
-          />
-        </Check>
       </InputBox>
       <InputBox>
         <Input type="text" placeholder="아이디"></Input>
-        <Check>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/check.png`}
-            alt="check"
-            width="24px"
-          />
-        </Check>
       </InputBox>
       <InputBox>
         <Input type="text" placeholder="비밀번호"></Input>
-        <Check>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/check.png`}
-            alt="check"
-            width="24px"
-          />
-        </Check>
       </InputBox>
       <InputBox>
         <Input type="phone" placeholder="전화번호"></Input>
-        <Check>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/check.png`}
-            alt="check"
-            width="24px"
-          />
-        </Check>
       </InputBox>
       <InputBox>
         {/* 년도 드롭다운 */}

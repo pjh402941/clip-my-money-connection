@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
 const Background = styled.div`
   position: relative;
@@ -17,7 +16,7 @@ const Top = styled.div`
   background: #55877e;
 `;
 
-const BackButton = styled.div`
+const Back = styled.div`
   position: relative;
   margin-left: -90%;
   padding-top: 15px;
@@ -102,14 +101,6 @@ const LoginBox = styled.button`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 6px;
   border: none;
-`;
-
-const Text = styled.div`
-  position: relative;
-  margin: auto;
-  padding-top: 21px;
-  width: 40px;
-  height: 15px;
   font-size: 12px;
   color: #ffffff;
 `;
@@ -122,7 +113,6 @@ const Join = styled.div`
   width: 185px;
   height: 15px;
   font-size: 12px;
-  line-height: 15px;
   color: #ffffff;
 `;
 
@@ -130,44 +120,48 @@ const Login = () => {
   const navigate = useNavigate();
 
   const onClick = () => {
-    navigate(`/SignUpDetail`);
+    navigate(`/SignUp`);
   };
 
-  const [Id, setId] = useState("");
-  const [Password, setPassword] = useState("");
-
-  const onIdHandler = (event) => {
-    setId(event.currentTarget.value);
-  };
-  const onPasswordHandler = (event) => {
-    setPassword(event.currentTarget.value);
+  const onClickBtn = () => {
+    navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
   };
 
-  const dispatch = useDispatch();
+  const [loginId, setLoginId] = useState("");
+  const [loginPw, setLoginPw] = useState("");
+  const [loginButtonDisabled, setLoginButtonDisabled] = useState(true);
 
-  const onSubmitHandler = (event) => {
-    // 버튼만 누르면 리프레시 되는것을 막아줌
-    event.preventDefault();
+  const handleLoginIdChange = (e) => {
+    const value = e.target.value;
+    setLoginId(value);
+    updateLoginButtonState(value, loginPw);
+  };
 
-    console.log("Id", Id);
-    console.log("Password", Password);
+  const handleLoginPwChange = (e) => {
+    const value = e.target.value;
+    setLoginPw(value);
+    updateLoginButtonState(loginId, value);
+  };
 
-    let body = {
-      id: Id,
-      password: Password,
-    };
+  const updateLoginButtonState = (id, pw) => {
+    setLoginButtonDisabled(id.length === 0 || pw.length === 0);
+  };
+
+  const handleLogin = () => {
+    //승연 언니 페이지랑 연결
+    navigate(`/NoSign`);
   };
 
   return (
     <Background>
       <Top>
-        <BackButton>
+        <Back onClick={onClickBtn}>
           <img
             src={`${process.env.PUBLIC_URL}/images/back.png`}
             alt="back"
             width="18px"
           />
-        </BackButton>
+        </Back>
       </Top>
       <TitleBox>
         <Title>로그인</Title>
@@ -179,28 +173,23 @@ const Login = () => {
           />
         </Person>
       </TitleBox>
-      <LoginInput onSubmit={onSubmitHandler}>
+      <LoginInput>
         <IdPwInput
           type="text"
           placeholder="아이디"
-          value={Id}
-          onChange={onIdHandler}
+          value={loginId}
+          onChange={handleLoginIdChange}
         ></IdPwInput>
         <IdPwInput
           type="password"
           placeholder="비밀번호"
-          value={Password}
-          onChange={onPasswordHandler}
+          value={loginPw}
+          onChange={handleLoginPwChange}
         ></IdPwInput>
         <PwAgain>비밀번호 재설정</PwAgain>
       </LoginInput>
-      <LoginInput>
-        <IdPwInput type="text" placeholder="아이디"></IdPwInput>
-        <IdPwInput type="password" placeholder="비밀번호"></IdPwInput>
-        <PwAgain>비밀번호 재설정!</PwAgain>
-      </LoginInput>
-      <LoginBox formAction="">
-        <Text>로그인</Text>
+      <LoginBox onClick={handleLogin} disabled={loginButtonDisabled}>
+        로그인
       </LoginBox>
       <Join onClick={onClick}>아직 회원이 아니신가요? 회원가입</Join>
     </Background>
