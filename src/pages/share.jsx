@@ -152,10 +152,19 @@ const Share = () => {
     }
   }, [location.state]);
 
+  const onClickBtn = () => {
+    navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
+  };
+
   return (
     <Container>
       <Header>
-        <BackButton src="images/뒤로가기.png" alt="back" width="16px" />
+        <BackButton
+          onClick={onClickBtn}
+          src="images/뒤로가기.png"
+          alt="back"
+          width="16px"
+        />
       </Header>
       <Body>
         {capturedImageUrl && <Capture src={capturedImageUrl} alt="Captured" />}
