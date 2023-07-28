@@ -111,8 +111,8 @@ const Save = () => {
   const [popup, setPopup] = useState(false);
   const location = useLocation();
   const [capturedImage, setCapturedImage] = useState(null); // capturedImage 상태 선언
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   useEffect(() => {
     if (location.state && location.state.capturedImage) {
       setCapturedImage(location.state.capturedImage);

@@ -2,12 +2,29 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const Background = styled.div`
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   position: relative;
-  height: 844px;
-  margin: 0 auto;
   text-align: center;
-  background: #f5f0e4;
+  background-color: #f5f0e4;
+  -ms-overflow-style: none;
+  font-family: "Inter", sans-serif;
+
+  /* 미디어 쿼리 적용 */
+  @media (hover: hover) {
+    width: 390px;
+    margin: 0 auto;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+const BodyWrapper = styled.div`
+  flex: 1; /* 남은 공간을 채우도록 설정 */
+  overflow: auto; /* 스크롤이 있는 경우 내용을 스크롤합니다. */
 `;
 
 const Top = styled.div`
@@ -245,66 +262,68 @@ const SignUp = () => {
   }, [ageCheck, useCheck, marketingCheck]);
 
   return (
-    <Background>
-      <Top>
-        <Back onClick={onClickBtn}>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/back.png`}
-            alt="back"
-            width="18px"
-          />
-        </Back>
-      </Top>
-      <TitleBox>
-        <Title>회원가입</Title>
-        <Person>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/person.png`}
-            alt="person"
-            width="24px"
-          />
-        </Person>
-      </TitleBox>
-      <AgreeBox>
-        <Agree>
-          <Check
+    <Container>
+      <BodyWrapper>
+        <Top>
+          <Back onClick={onClickBtn}>
+            <img
+              src={`${process.env.PUBLIC_URL}/images/back.png`}
+              alt="back"
+              width="18px"
+            />
+          </Back>
+        </Top>
+        <TitleBox>
+          <Title>회원가입</Title>
+          <Person>
+            <img
+              src={`${process.env.PUBLIC_URL}/images/person.png`}
+              alt="person"
+              width="24px"
+            />
+          </Person>
+        </TitleBox>
+        <AgreeBox>
+          <Agree>
+            <Check
+              type="checkbox"
+              name="terms"
+              checked={useCheck}
+              onChange={useBtnEvent}
+            />
+            <AgreeText>[필수] 서비스 이용약관 동의</AgreeText>
+          </Agree>
+          <Agree>
+            <Check
+              type="checkbox"
+              name="collect"
+              checked={ageCheck}
+              onChange={ageBtnEvent}
+            />
+            <AgreeText>[필수] 개인정보 수집 및 이용 동의</AgreeText>
+          </Agree>
+          <Agree>
+            <Check
+              type="checkbox"
+              name="marketing"
+              checked={marketingCheck}
+              onChange={marketingBtnEvent}
+            />
+            <AgreeText>[선택] 마케팅 정보 수신 동의</AgreeText>
+          </Agree>
+        </AgreeBox>
+        <AllAgree>
+          <Check2
             type="checkbox"
-            name="terms"
-            checked={useCheck}
-            onChange={useBtnEvent}
+            name="all"
+            checked={allCheck}
+            onChange={allBtnEvent}
           />
-          <AgreeText>[필수] 서비스 이용약관 동의</AgreeText>
-        </Agree>
-        <Agree>
-          <Check
-            type="checkbox"
-            name="collect"
-            checked={ageCheck}
-            onChange={ageBtnEvent}
-          />
-          <AgreeText>[필수] 개인정보 수집 및 이용 동의</AgreeText>
-        </Agree>
-        <Agree>
-          <Check
-            type="checkbox"
-            name="marketing"
-            checked={marketingCheck}
-            onChange={marketingBtnEvent}
-          />
-          <AgreeText>[선택] 마케팅 정보 수신 동의</AgreeText>
-        </Agree>
-      </AgreeBox>
-      <AllAgree>
-        <Check2
-          type="checkbox"
-          name="all"
-          checked={allCheck}
-          onChange={allBtnEvent}
-        />
-        <AgreeText2>전체 동의</AgreeText2>
-      </AllAgree>
-      <Done onClick={onClick}>가입하기</Done>
-    </Background>
+          <AgreeText2>전체 동의</AgreeText2>
+        </AllAgree>
+        <Done onClick={onClick}>가입하기</Done>
+      </BodyWrapper>
+    </Container>
   );
 };
 export default SignUp;
