@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom"; // useLocation 추가
+import { useLocation, useNavigate } from "react-router-dom"; // useLocation 추가
 import styled from "styled-components";
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   position: relative;
-  height: 740px;
-  margin: 0 auto;
   text-align: center;
-  overflow: auto;
   background-color: #f5f0e4;
   -ms-overflow-style: none;
   font-family: "Inter", sans-serif;
@@ -17,9 +17,14 @@ const Container = styled.div`
     width: 390px;
     margin: 0 auto;
   }
+
   &::-webkit-scrollbar {
     display: none;
   }
+`;
+const BodyWrapper = styled.div`
+  flex: 1; /* 남은 공간을 채우도록 설정 */
+  overflow: auto; /* 스크롤이 있는 경우 내용을 스크롤합니다. */
 `;
 
 const Header = styled.header`
@@ -45,6 +50,7 @@ const Capture = styled.img`
   border: 1.827px solid #55877e;
   border-radius: 3.015px;
   padding: 8px;
+  width: 210px;
 `;
 
 const ActionWrapper = styled.div`
@@ -145,6 +151,7 @@ const CopyIcon = styled(SocialIcon)`
 const Share = () => {
   const [capturedImageUrl, setCapturedImageUrl] = useState(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (location.state && location.state.capturedImage) {
@@ -158,32 +165,40 @@ const Share = () => {
 
   return (
     <Container>
-      <Header>
-        <BackButton
-          onClick={onClickBtn}
-          src="images/뒤로가기.png"
-          alt="back"
-          width="16px"
-        />
-      </Header>
-      <Body>
-        {capturedImageUrl && <Capture src={capturedImageUrl} alt="Captured" />}
-        <ActionWrapper>
-          <ShareButton>공유</ShareButton>
-          <ShareBox>
-            <FaceBook src="images/페이스북.png" alt="facebook" width="24px" />
-            <Insta src="images/인스타.png" alt="insta" width="24px" />
-            <Message src="images/문자.png" alt="message" width="24px" />
-            <Plus src="images/더보기.png" alt="plus" width="24px" />
-          </ShareBox>
-          <LinkWrapper>
-            <LinkBox>
-              <Link readOnly></Link>
-            </LinkBox>
-            <CopyIcon src="images/복사.png" alt="copy" width="24px"></CopyIcon>
-          </LinkWrapper>
-        </ActionWrapper>
-      </Body>
+      <BodyWrapper>
+        <Header>
+          <BackButton
+            onClick={onClickBtn}
+            src="images/뒤로가기.png"
+            alt="back"
+            width="16px"
+          />
+        </Header>
+        <Body>
+          {capturedImageUrl && (
+            <Capture src={capturedImageUrl} alt="Captured" />
+          )}
+          <ActionWrapper>
+            <ShareButton>공유</ShareButton>
+            <ShareBox>
+              <FaceBook src="images/페이스북.png" alt="facebook" width="24px" />
+              <Insta src="images/인스타.png" alt="insta" width="24px" />
+              <Message src="images/문자.png" alt="message" width="24px" />
+              <Plus src="images/더보기.png" alt="plus" width="24px" />
+            </ShareBox>
+            <LinkWrapper>
+              <LinkBox>
+                <Link readOnly></Link>
+              </LinkBox>
+              <CopyIcon
+                src="images/복사.png"
+                alt="copy"
+                width="24px"
+              ></CopyIcon>
+            </LinkWrapper>
+          </ActionWrapper>
+        </Body>
+      </BodyWrapper>
     </Container>
   );
 };

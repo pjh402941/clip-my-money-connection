@@ -10,7 +10,8 @@ import SignUpDetail from "./pages/SignUpDetail";
 import Write from "./pages/write";
 import Writeform1 from "./pages/writeform1";
 import Read from "./pages/read";
-
+import Save from "./pages/save";
+import Share from "./pages/share";
 function App() {
   return (
     <BrowserRouter>
@@ -22,8 +23,14 @@ function App() {
           <Route path="/NoSign" element={<NoSign />} />
           <Route path="/SignUpDetail" element={<SignUpDetail />} />
           <Route path="/Recordstart_ag" element={<Recordstart_ag />} />
+          <Route path="/Recordstart_ds" element={<Recordstart_ds />} />
+          <Route path="/save" element={<Save />} />
+          <Route path="/share" element={<Share />} />
+
           <Route path="/Read" element={<Read />} />
           <Route path="/Write" element={<Write />} />
+          <Route path="/Dayselect" element={<Dayselect />} />
+          <Route path="/Writeform1" element={<Writeform1 />} />
         </Routes>
       </div>
     </BrowserRouter>
