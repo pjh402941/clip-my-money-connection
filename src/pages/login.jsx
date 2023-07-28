@@ -17,7 +17,7 @@ const Top = styled.div`
   background: #55877e;
 `;
 
-const Back = styled.div`
+const BackButton = styled.div`
   position: relative;
   margin-left: -90%;
   padding-top: 15px;
@@ -161,13 +161,13 @@ const Login = () => {
   return (
     <Background>
       <Top>
-        <Back>
+        <BackButton>
           <img
             src={`${process.env.PUBLIC_URL}/images/back.png`}
             alt="back"
             width="18px"
           />
-        </Back>
+        </BackButton>
       </Top>
       <TitleBox>
         <Title>로그인</Title>
