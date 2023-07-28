@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom"; // useLocation 추가
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -142,13 +143,22 @@ const CopyIcon = styled(SocialIcon)`
 `;
 
 const Share = () => {
+  const [capturedImageUrl, setCapturedImageUrl] = useState(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state && location.state.capturedImage) {
+      setCapturedImageUrl(location.state.capturedImage);
+    }
+  }, [location.state]);
+
   return (
     <Container>
       <Header>
         <BackButton src="images/뒤로가기.png" alt="back" width="16px" />
       </Header>
       <Body>
-        <Capture src="images/캡처.png" width="191px"></Capture>
+        {capturedImageUrl && <Capture src={capturedImageUrl} alt="Captured" />}
         <ActionWrapper>
           <ShareButton>공유</ShareButton>
           <ShareBox>
