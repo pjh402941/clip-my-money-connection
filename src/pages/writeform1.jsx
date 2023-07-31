@@ -37,9 +37,9 @@ const Header = styled.header`
 `;
 
 const BackButton = styled.img`
-position: relative;
-margin-left: -90%;
-padding-top: 15px;
+  position: relative;
+  margin-left: -90%;
+  padding-top: 15px;
 `;
 
 const Body = styled.div`
@@ -355,7 +355,7 @@ const Writeform1 = () => {
               <TodoInsert onClick={navigateTowriteform2}>+</TodoInsert>
               <Line0 src="./images/line0.png"></Line0>
               <TotalBox>
-                <TotalTag>Total</TotalTag>
+                <TotalTag>TOTAL</TotalTag>
                 <Total></Total>
               </TotalBox>
             </FormContent>
