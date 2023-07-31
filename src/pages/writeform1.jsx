@@ -118,25 +118,6 @@ const Bottom = styled.img`
   filter: drop-shadow(0px 4px 3px #b8b5ac);
 `;
 
-const Title = styled.input`
-  border-radius: 6px;
-  background: #fff;
-  border: none;
-  width: 95%;
-  height: 39px;
-  margin: 0;
-  margin-bottom: 10px;
-  text-align: center;
-  font-family: "Inter", sans-serif;
-  ::placeholder {
-    font-family: "Inter", sans-serif;
-    color: #b3dbd4;
-  }
-  &:focus {
-    outline: none;
-  }
-`;
-
 const Footer = styled.footer`
   background: #55877e;
   height: 80px;
@@ -153,49 +134,42 @@ const ToolBox = styled.div`
   padding: 0 15px;
 `;
 
-const Bottombox = styled.div`
-  position: center;
-  border-radius: 6px;
-  background-color: white;
-  width: 96%;
-  height: 45px;
-  margin-top: 7px;
-  margin-left: 7px;
-  text-align: center;
-  font-family: "Inter", sans-serif;
-`;
-
-const Totaltext = styled.text`
-  display: flex;
-  width: 120px;
-  height: 40px;
-  flex-direction: column;
-  justify-content: center;
-  color: #214a43;
-  text-align: right;
-  font-family: Inter;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-`;
-
-const Totalprice = styled.text`
-  display: flex;
-  width: 120px;
-  height: 40px;
-  flex-direction: column;
-  justify-content: center;
+const TotalBox = styled.div`
   margin: 0 auto;
-  margin-top: -40px;
-  margin-left: 200px;
+  background-color: white;
+
+  width: 87%;
+  border-radius: 6px;
+  border: 2px solid #55877e;
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: 11px 65px;
+  position: absolute;
+  margin-top: 20px;
+`;
+
+const TotalTag = styled.div``;
+
+const Total = styled.input`
+  position: absolute;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  left: 140px;
   color: #214a43;
-  text-align: left;
+  float: right;
+  text-align: center;
   font-family: Inter;
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  border: none;
 `;
 
 const TodoInsert = styled.button`
@@ -220,6 +194,7 @@ const TodoInsert = styled.button`
 `;
 
 const List = styled.div`
+  margin-top: 20px;
   height: 280px;
   overflow-y: scroll;
 `;
@@ -237,20 +212,26 @@ const ListBox = styled.div`
 
 const ListBoxin = styled.div`
   display: flex;
-  gap: 10px;
+
   margin: auto;
   width: 100%;
   border-radius: 6px;
   background-color: white;
+
+  justify-content: space-between;
+  align-content: space-between;
 `;
 
 const ListItem = styled.input`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
   position: flex;
   color: #214a43;
   float: left;
   text-align: center;
   font-family: Inter;
-  font-size: 12px;
+  font-size: 11.5px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -259,11 +240,15 @@ const ListItem = styled.input`
 const Price = styled.input`
   position: flex;
 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
   color: #214a43;
   float: right;
   text-align: center;
   font-family: Inter;
-  font-size: 12px;
+  font-size: 11.5px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -324,11 +309,6 @@ const Writeform1 = () => {
               </SubmitBox>
             </FormHeader>
             <FormContent>
-              <Title
-                name="title"
-                placeholder="제목을 입력하세요"
-                maxLength="30"
-              />
               <List>
                 <ListBox>
                   <ListBoxin>
@@ -375,10 +355,10 @@ const Writeform1 = () => {
               </List>
               <TodoInsert onClick={navigateTowriteform2}>+</TodoInsert>
               <Line0 src="./images/line0.png"></Line0>
-              <Bottombox>
-                <Totaltext>TOTAL</Totaltext>
-                <Totalprice>93700 원</Totalprice>
-              </Bottombox>
+              <TotalBox>
+                <TotalTag>Total</TotalTag>
+                <Total></Total>
+              </TotalBox>
             </FormContent>
           </form>
           <Bottom src="images/Bottom.png"></Bottom>
@@ -389,6 +369,7 @@ const Writeform1 = () => {
               src="images/레이아웃 양식.png"
               alt="layout"
               width="24px"
+              onClick={() => navigate("/Write")}
             />
           </ToolBox>
         </Footer>

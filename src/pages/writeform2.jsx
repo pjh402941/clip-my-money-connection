@@ -152,50 +152,30 @@ const ToolBox = styled.div`
   padding: 0 15px;
 `;
 
-const Bottombox = styled.div`
-  position: center;
-  border-radius: 6px;
-  background-color: white;
-  width: 96%;
-  height: 45px;
-  margin-top: 7px;
-  margin-left: 7px;
-  text-align: center;
-  font-family: "Inter", sans-serif;
-`;
-
-const Totaltext = styled.text`
-  display: flex;
-  width: 120px;
-  height: 40px;
-  flex-direction: column;
-  justify-content: center;
-  color: #214a43;
-  text-align: right;
-  font-family: Inter;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-`;
-
-const Totalprice = styled.text`
-  display: flex;
-  width: 120px;
-  height: 40px;
-  flex-direction: column;
-  justify-content: center;
+const TotalBox = styled.div`
   margin: 0 auto;
-  margin-top: -40px;
-  margin-left: 200px;
-  color: #214a43;
-  text-align: left;
-  font-family: Inter;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  height: auto;
+  width: 79%;
+  border-radius: 6px;
+  border: 2px solid #55877e;
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: 11px 65px;
+  position: absolute;
+  z-index: 1;
+  bottom: 115px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 281px;
 `;
+
+const TotalTag = styled.div``;
+
+const Total = styled.div``;
 
 const TodoInsert = styled.button`
   background: none;
@@ -291,10 +271,10 @@ const Writeform1 = () => {
               <Line src="images/line.png" alt="line"></Line>
               <Line2 src="images/line2.png" alt="line"></Line2>
 
-              <Bottombox>
-                <Totaltext>TOTAL</Totaltext>
-                <Totalprice>00 원</Totalprice>
-              </Bottombox>
+              <TotalBox>
+                <TotalTag>Total</TotalTag>
+                <Total>00won</Total>
+              </TotalBox>
             </FormContent>
           </form>
           <Bottom src="images/Bottom.png"></Bottom>
