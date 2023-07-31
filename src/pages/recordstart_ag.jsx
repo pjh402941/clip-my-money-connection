@@ -29,21 +29,15 @@ const BodyWrapper = styled.div`
 `;
 
 const Topbar = styled.div`
-  background-color: #55877e;
+  position: relative;
   height: 46px;
-  border-bottom: 1px solid #b3b3b3;
-  box-sizing: border-box;
-  padding-top: 13px;
+  background: #55877e;
 `;
 
 const Backbutton = styled.div`
-  display: flex;
-  width: 24px;
-  height: 24px;
-  padding: 4px;
-  justify-content: center;
-  align-items: center;
-  color: #ffffff;
+  position: relative;
+  margin-left: -90%;
+  padding-top: 15px;
 `;
 
 const Mainimg = styled.div`
@@ -183,7 +177,11 @@ const Recordstart_ag = () => {
       <BodyWrapper>
         <Topbar>
           <Backbutton onClick={onClickBtn}>
-            <img src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
+            <img
+              src={`${process.env.PUBLIC_URL}/images/back.png`}
+              alt="back"
+              width="16px"
+            />
           </Backbutton>
         </Topbar>
 

@@ -24,8 +24,8 @@ const Container = styled.div`
 `;
 
 const BodyWrapper = styled.div`
-  flex: 1; /* 남은 공간을 채우도록 설정 */
-  overflow: auto; /* 스크롤이 있는 경우 내용을 스크롤합니다. */
+  flex: 1;
+  overflow: auto;
 `;
 
 const Top = styled.div`
@@ -97,6 +97,10 @@ const IdPwInput = styled.input`
     color: #b3dbd4;
     padding-left: 10px;
   }
+  &:focus {
+    outline: none;
+    border: none;
+  }
 `;
 
 const LoginBox = styled.button`
@@ -167,7 +171,7 @@ const Login = () => {
             <img
               src={`${process.env.PUBLIC_URL}/images/back.png`}
               alt="back"
-              width="18px"
+              width="16px"
             />
           </Back>
         </Top>
