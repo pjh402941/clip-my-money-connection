@@ -29,12 +29,11 @@ const BodyWrapper = styled.div`
 `;
 
 const Topbar = styled.div`
-  display: inline-flex;
-  width: 17px;
-  padding: 11px 360px 11px 13px;
-  align-items: center;
-  gap: 11px;
-  background: #55877e;
+  background-color: #55877e;
+  height: 46px;
+  border-bottom: 1px solid #b3b3b3;
+  box-sizing: border-box;
+  padding-top: 13px;
 `;
 
 const Backbutton = styled.div`
@@ -47,32 +46,10 @@ const Backbutton = styled.div`
   color: #ffffff;
 `;
 
-const Toptitle = styled.div`
-  color: #b3dbd4;
-  text-align: center;
-  font-family: Inter;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
-  margin-top: 70px;
-`;
-
-const Bottomtitle = styled.div`
-  color: #b3dbd4;
-  text-align: center;
-  font-family: Inter;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
-`;
-
 const Mainimg = styled.div`
-  margin-left: 70px;
-  width: 225px;
-  height: 206px;
-  flex-shrink: 0;
+  position: relative;
+  margin: auto;
+  margin-top: 70px;
 `;
 
 const Bottombox = styled.div`
@@ -84,7 +61,7 @@ const Bottombox = styled.div`
   gap: 20px;
   width: 300px;
   height: 250px;
-  margin-left: 35px;
+  margin: auto;
   margin-top: 20px;
   border-radius: 6px;
   background: #b3dbd4;
@@ -194,11 +171,7 @@ const Recordstart_ag = () => {
     navigate("/read");
   };
   const navigateToWrite = () => {
-<<<<<<< HEAD
     navigate("/Dayselect");
-=======
-    navigate("/dayselect");
->>>>>>> bcedc7cdb40e6429198dab915908905294e226fc
   };
 
   const onClickBtn = () => {
@@ -213,14 +186,15 @@ const Recordstart_ag = () => {
             <img src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
           </Backbutton>
         </Topbar>
-        <Toptitle>SHUT UP AND</Toptitle>
+
         <Mainimg>
           <img
-            src={`${process.env.PUBLIC_URL}/images/mainimg.png`}
-            alt="mainimage"
+            src={`${process.env.PUBLIC_URL}/images/logo.png`}
+            alt="logo"
+            width="338px"
+            height="302px"
           />
         </Mainimg>
-        <Bottomtitle>CLIP MY MONEY</Bottomtitle>
 
         <Bottombox>
           <Listtext>목록</Listtext>

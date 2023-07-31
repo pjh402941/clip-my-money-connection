@@ -1,8 +1,5 @@
 import React, { useCallback, useState, useRef } from "react";
 import styled from "styled-components";
-
-import TodoInsert from "./TodoInsert";
-
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
@@ -211,11 +208,8 @@ const LayoutIcon = styled.img`
   /* LayoutIcon 스타일링 */
 `;
 
-const Writeform1 = () => {
+const Writeform2 = () => {
   const navigate = useNavigate();
-  const navigateTowriteform2 = () => {
-    navigate("/Writeform2");
-  };
 
   const onClickBtn = () => {
     navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
@@ -264,8 +258,6 @@ const Writeform1 = () => {
                 placeholder="제목을 입력하세요"
                 maxLength="30"
               />
-
-              <TodoInsert onClick={navigateTowriteform2} />
               <Bottombox>
                 <Totaltext>TOTAL</Totaltext>
                 <Totalprice>93700 원</Totalprice>
@@ -290,4 +282,4 @@ const Writeform1 = () => {
   );
 };
 
-export default Writeform1;
+export default Writeform2;
