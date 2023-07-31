@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import html2canvas from "html2canvas";
 
 const Container = styled.div`
   display: flex;
@@ -9,6 +10,7 @@ const Container = styled.div`
   min-height: 100vh;
   position: relative;
   text-align: center;
+  background-color: #f5f0e4;
   background-color: #f5f0e4;
   -ms-overflow-style: none;
   font-family: "Inter", sans-serif;

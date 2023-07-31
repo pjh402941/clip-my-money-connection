@@ -125,6 +125,7 @@ const Title = styled.input`
   width: 95%;
   height: 39px;
   margin: 0;
+  margin-bottom: 10px;
   text-align: center;
   font-family: "Inter", sans-serif;
   ::placeholder {
@@ -211,25 +212,70 @@ const TodoInsert = styled.button`
   width: 325px;
   height: 45px;
   cursor: pointer;
-  margin-top: 5px;
+  margin-top: 10px;
   transition: 0.1s background ease-in;
   &:hover {
     background: #adb5bd;
   }
 `;
 
-const TextIcon = styled.img`
-  /* TextIcon 스타일링 */
+const List = styled.div`
+  height: 280px;
+  overflow-y: scroll;
+`;
+const ListBox = styled.div`
+  display: flex;
+  padding: 8px 11px;
+
+  gap: 2px;
+  margin: auto;
+  margin-bottom: 10px;
+  width: 90%;
+  border-radius: 6px;
+  background-color: white;
 `;
 
-const ColorIcon = styled.img`
-  /* ColorIcon 스타일링 */
+const ListBoxin = styled.div`
+  display: flex;
+  gap: 10px;
+  margin: auto;
+  width: 100%;
+  border-radius: 6px;
+  background-color: white;
+`;
+
+const ListItem = styled.input`
+  position: flex;
+  color: #214a43;
+  float: left;
+  text-align: center;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+const Price = styled.input`
+  position: flex;
+
+  color: #214a43;
+  float: right;
+  text-align: center;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+const Line0 = styled.img`
+  /*line2 스타일링*/
 `;
 
 const LayoutIcon = styled.img`
   /* LayoutIcon 스타일링 */
 `;
-
 const Writeform1 = () => {
   const navigate = useNavigate();
   const navigateTowriteform2 = () => {
@@ -283,7 +329,52 @@ const Writeform1 = () => {
                 placeholder="제목을 입력하세요"
                 maxLength="30"
               />
+              <List>
+                <ListBox>
+                  <ListBoxin>
+                    <ListItem readOnly></ListItem>
+                    <Price readOnly></Price>
+                  </ListBoxin>
+                </ListBox>
+                <ListBox>
+                  <ListBoxin>
+                    <ListItem readOnly></ListItem>
+                    <Price readOnly></Price>
+                  </ListBoxin>
+                </ListBox>
+                <ListBox>
+                  <ListBoxin>
+                    <ListItem readOnly></ListItem>
+                    <Price readOnly></Price>
+                  </ListBoxin>
+                </ListBox>
+                <ListBox>
+                  <ListBoxin>
+                    <ListItem readOnly></ListItem>
+                    <Price readOnly></Price>
+                  </ListBoxin>
+                </ListBox>
+                <ListBox>
+                  <ListBoxin>
+                    <ListItem readOnly></ListItem>
+                    <Price readOnly></Price>
+                  </ListBoxin>
+                </ListBox>
+                <ListBox>
+                  <ListBoxin>
+                    <ListItem readOnly></ListItem>
+                    <Price readOnly></Price>
+                  </ListBoxin>
+                </ListBox>
+                <ListBox>
+                  <ListBoxin>
+                    <ListItem readOnly></ListItem>
+                    <Price readOnly></Price>
+                  </ListBoxin>
+                </ListBox>
+              </List>
               <TodoInsert onClick={navigateTowriteform2}>+</TodoInsert>
+              <Line0 src="./images/line0.png"></Line0>
               <Bottombox>
                 <Totaltext>TOTAL</Totaltext>
                 <Totalprice>93700 원</Totalprice>
@@ -294,8 +385,6 @@ const Writeform1 = () => {
         </Body>
         <Footer>
           <ToolBox>
-            <TextIcon src="images/텍스트.png" alt="text" width="24px" />
-            <ColorIcon src="images/색상.png" alt="color" width="24px" />
             <LayoutIcon
               src="images/레이아웃 양식.png"
               alt="layout"
