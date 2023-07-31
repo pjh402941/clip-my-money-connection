@@ -265,11 +265,11 @@ const SignUp = () => {
     <Container>
       <BodyWrapper>
         <Top>
-          <Back onClick={onClickBtn}>
+          <Back onClick={onClickBtn} width="16px">
             <img
               src={`${process.env.PUBLIC_URL}/images/back.png`}
               alt="back"
-              width="18px"
+              width="16px"
             />
           </Back>
         </Top>

@@ -97,6 +97,10 @@ const IdPwInput = styled.input`
     color: #b3dbd4;
     padding-left: 10px;
   }
+  &:focus {
+    outline: none;
+    border: none;
+  }
 `;
 
 const PwAgain = styled.div`
@@ -128,7 +132,7 @@ const Join = styled.div`
   margin: auto;
   margin-top: 20px;
   background: #b3dbd4;
-  width: 185px;
+  width: 188px;
   height: 15px;
   font-size: 12px;
   color: #ffffff;
@@ -177,7 +181,7 @@ const Login = () => {
             <img
               src={`${process.env.PUBLIC_URL}/images/back.png`}
               alt="back"
-              width="18px"
+              width="16px"
             />
           </Back>
         </Top>

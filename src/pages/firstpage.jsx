@@ -29,9 +29,8 @@ const BodyWrapper = styled.div`
 `;
 
 const Topbar = styled.div`
-  background-color: #55877e;
+  background-color: #f5f0e4;
   height: 46px;
-  border-bottom: 1px solid #b3b3b3;
   box-sizing: border-box;
   padding-top: 13px;
 `;
@@ -158,9 +157,6 @@ const Firstpage = () => {
     <Container>
       <BodyWrapper>
         <Topbar>
-          <Backbutton onClick={onClickBtn}>
-            <img src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
-          </Backbutton>
         </Topbar>
 
         <Mainimg>
