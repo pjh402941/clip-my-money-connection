@@ -1,8 +1,6 @@
 import React, { useCallback, useState, useRef } from "react";
 import styled from "styled-components";
 
-import TodoInsert from "./TodoInsert";
-
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
@@ -199,6 +197,27 @@ const Totalprice = styled.text`
   line-height: normal;
 `;
 
+const TodoInsert = styled.button`
+  background: none;
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  background: #868e96;
+  color: white;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1.7rem;
+  display: center;
+  width: 325px;
+  height: 45px;
+  cursor: pointer;
+  margin-top: 5px;
+  transition: 0.1s background ease-in;
+  &:hover {
+    background: #adb5bd;
+  }
+`;
+
 const TextIcon = styled.img`
   /* TextIcon 스타일링 */
 `;
@@ -264,8 +283,7 @@ const Writeform1 = () => {
                 placeholder="제목을 입력하세요"
                 maxLength="30"
               />
-
-              <TodoInsert onClick={navigateTowriteform2} />
+              <TodoInsert onClick={navigateTowriteform2}>+</TodoInsert>
               <Bottombox>
                 <Totaltext>TOTAL</Totaltext>
                 <Totalprice>93700 원</Totalprice>
