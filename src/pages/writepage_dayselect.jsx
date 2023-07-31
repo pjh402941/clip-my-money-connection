@@ -5,8 +5,6 @@ import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
 import "./Calendarstyle.css";
 
-//import moment from "moment";
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -33,16 +31,15 @@ const BodyWrapper = styled.div`
 `;
 
 const Topbar = styled.div`
-  background-color: #55877e;
+  position: relative;
   height: 46px;
-  border-bottom: 1px solid #b3b3b3;
-  box-sizing: border-box;
-  padding-top: 13px;
+  background: #55877e;
 `;
 
 const Backbutton = styled.div`
-  position: absolute;
-  left: 13px;
+  position: relative;
+  margin-left: -90%;
+  padding-top: 15px;
 `;
 
 const Topclip = styled.div`
@@ -107,7 +104,6 @@ const Calendarbox = styled.div`
   gap: 11px;
   margin: 0 auto;
   margin-top: 40px;
-
   border-radius: 6px;
   background: #2a534c;
 `;
@@ -122,6 +118,7 @@ const SelectBtn = styled.button`
   border-radius: 6px;
   background: #55877e;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border: none;
 `;
 
 const SelectText = styled.div`
@@ -179,7 +176,11 @@ const Dayselect = () => {
       <BodyWrapper>
         <Topbar>
           <Backbutton onClick={onClickBtn}>
-            <img src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
+            <img
+              src={`${process.env.PUBLIC_URL}/images/back.png`}
+              alt="back"
+              width="16px"
+            />
           </Backbutton>
         </Topbar>
         <Topgreenbox>

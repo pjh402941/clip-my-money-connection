@@ -31,16 +31,15 @@ const BodyWrapper = styled.div`
 `;
 
 const Header = styled.header`
-  background-color: #55877e;
+  position: relative;
   height: 46px;
-  border-bottom: 1px solid #b3b3b3;
-  box-sizing: border-box;
-  padding-top: 13px;
+  background: #55877e;
 `;
 
 const BackButton = styled.img`
-  position: absolute;
-  left: 13px;
+  position: relative;
+  margin-left: -90%;
+  padding-top: 15px;
 `;
 
 const Body = styled.div`
@@ -356,7 +355,7 @@ const Writeform1 = () => {
               <TodoInsert onClick={navigateTowriteform2}>+</TodoInsert>
               <Line0 src="./images/line0.png"></Line0>
               <TotalBox>
-                <TotalTag>Total</TotalTag>
+                <TotalTag>TOTAL</TotalTag>
                 <Total></Total>
               </TotalBox>
             </FormContent>

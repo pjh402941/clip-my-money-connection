@@ -24,8 +24,8 @@ const Container = styled.div`
 `;
 
 const BodyWrapper = styled.div`
-  flex: 1; /* 남은 공간을 채우도록 설정 */
-  overflow: auto; /* 스크롤이 있는 경우 내용을 스크롤합니다. */
+  flex: 1;
+  overflow: auto;
 `;
 
 const Top = styled.div`
@@ -91,22 +91,16 @@ const IdPwInput = styled.input`
   background: #ffffff;
   border-radius: 6px;
   border: none;
-  margin-top: 10px;
+  margin-top: 17px;
 
   &::placeholder {
     color: #b3dbd4;
     padding-left: 10px;
   }
-`;
-
-const PwAgain = styled.div`
-  position: relative;
-  margin-left: 220px;
-  margin-top: 8px;
-  width: 80px;
-  height: 12px;
-  font-size: 10px;
-  color: #55877e;
+  &:focus {
+    outline: none;
+    border: none;
+  }
 `;
 
 const LoginBox = styled.button`
@@ -128,7 +122,7 @@ const Join = styled.div`
   margin: auto;
   margin-top: 20px;
   background: #b3dbd4;
-  width: 185px;
+  width: 200px;
   height: 15px;
   font-size: 12px;
   color: #ffffff;
@@ -177,7 +171,7 @@ const Login = () => {
             <img
               src={`${process.env.PUBLIC_URL}/images/back.png`}
               alt="back"
-              width="18px"
+              width="16px"
             />
           </Back>
         </Top>
@@ -204,7 +198,6 @@ const Login = () => {
             value={loginPw}
             onChange={handleLoginPwChange}
           ></IdPwInput>
-          <PwAgain>비밀번호 재설정</PwAgain>
         </LoginInput>
         <LoginBox onClick={handleLogin} disabled={loginButtonDisabled}>
           로그인

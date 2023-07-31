@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useRef } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { useNavigate } from "react-router-dom";
@@ -31,16 +31,15 @@ const BodyWrapper = styled.div`
 `;
 
 const Header = styled.header`
-  background-color: #55877e;
-  height: 46px;
-  border-bottom: 1px solid #b3b3b3;
-  box-sizing: border-box;
-  padding-top: 13px;
+position: relative;
+height: 46px;
+background: #55877e;
 `;
 
 const BackButton = styled.img`
-  position: absolute;
-  left: 13px;
+position: relative;
+margin-left: -90%;
+padding-top: 15px;
 `;
 
 const Body = styled.div`
@@ -104,7 +103,7 @@ const SubmitButton = styled.button`
 `;
 
 const FormContent = styled.div`
-  box-sizing: border-box;
+  position: relative;
   height: 480px;
   border-radius: 6px;
   background: #b3dbd4;
@@ -116,24 +115,6 @@ const Bottom = styled.img`
   width: 100%;
   margin-top: -3px;
   filter: drop-shadow(0px 4px 3px #b8b5ac);
-`;
-
-const Title = styled.input`
-  border-radius: 6px;
-  background: #fff;
-  border: none;
-  width: 95%;
-  height: 39px;
-  margin: 0;
-  text-align: center;
-  font-family: "Inter", sans-serif;
-  ::placeholder {
-    font-family: "Inter", sans-serif;
-    color: #b3dbd4;
-  }
-  &:focus {
-    outline: none;
-  }
 `;
 
 const Footer = styled.footer`
@@ -152,58 +133,79 @@ const ToolBox = styled.div`
   padding: 0 15px;
 `;
 
-const TotalBox = styled.div`
-  margin: 0 auto;
-  height: auto;
-  width: 79%;
-  border-radius: 6px;
-  border: 2px solid #55877e;
+const SelectBox = styled.div`
+  position: relative;
+  width: 100px;
+  height: 470px;
+  margin-left: 7px;
   display: flex;
-  justify-content: space-between;
-  align-content: space-between;
-  flex-direction: row;
-  flex-wrap: wrap;
-  box-sizing: border-box;
-  padding: 11px 65px;
-  position: absolute;
-  z-index: 1;
-  bottom: 115px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin-top: 281px;
-`;
-
-const TotalTag = styled.div``;
-
-const Total = styled.div``;
-
-const TodoInsert = styled.button`
-  background: none;
-  outline: none;
-  border: none;
-  border-radius: 6px;
-  background: #868e96;
-  color: white;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  font-size: 1.7rem;
-  display: center;
-  width: 325px;
-  height: 45px;
-  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-around;
   margin-top: 5px;
-  transition: 0.1s background ease-in;
-  &:hover {
-    background: #adb5bd;
-  }
 `;
-const Line = styled.img`
-  /*line 스타일링*/
+
+const Select = styled.select`
+  position: relative;
+  border-radius: 6px;
+  background-color: white;
+  width: 80px;
+  height: 44px;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  border: none;
+  color: #214a43;
 `;
 
 const Line2 = styled.img`
-  /*line2 스타일링*/
-  height: 75%;
+  position: relative;
+  height: 478px;
+  margin-top: -600px;
+  top: -10px;
+  margin-left: -140px;
+`;
+
+const WhiteBoxArea = styled.div`
+  // position: relative;
+  width: 100px;
+  height: 470px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: -491.5px;
+`;
+
+const WhiteBox = styled.div`
+  position: relative;
+  width: 220px;
+  height: 44px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-left: 114px;
+  background: #ffffff;
+  border-radius: 6px;
+`;
+
+const Input = styled.input`
+  width: 90px;
+  height: 20px;
+  width: 90px;
+  height: 20px;
+
+  border: none;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  line-height: 10px;
+  text-align: center;
+
+  color: #214a43;
+
+  &::placeholder {
+    color: #214a43;
+  }
 `;
 
 const TextIcon = styled.img`
@@ -218,7 +220,7 @@ const LayoutIcon = styled.img`
   /* LayoutIcon 스타일링 */
 `;
 
-const Writeform1 = () => {
+const Writeform2 = () => {
   const navigate = useNavigate();
 
   const onClickBtn = () => {
@@ -263,18 +265,115 @@ const Writeform1 = () => {
               </SubmitBox>
             </FormHeader>
             <FormContent>
-              <Title
-                name="title"
-                placeholder="제목을 입력하세요"
-                maxLength="30"
-              />
-              <Line src="images/line.png" alt="line"></Line>
-              <Line2 src="images/line2.png" alt="line"></Line2>
-
-              <TotalBox>
-                <TotalTag>Total</TotalTag>
-                <Total>00won</Total>
-              </TotalBox>
+              <SelectBox>
+                <Select>
+                  <option disabled hidden selected>
+                    카테고리
+                  </option>
+                  <option value="1">식비</option>
+                  <option value="2">쇼핑</option>
+                  <option value="3">교통비</option>
+                  <option value="4">기타</option>
+                </Select>
+                <Select>
+                  <option disabled hidden selected>
+                    카테고리
+                  </option>
+                  <option value="1">식비</option>
+                  <option value="2">쇼핑</option>
+                  <option value="3">교통비</option>
+                  <option value="4">기타</option>
+                </Select>
+                <Select>
+                  <option disabled hidden selected>
+                    카테고리
+                  </option>
+                  <option value="1">식비</option>
+                  <option value="2">쇼핑</option>
+                  <option value="3">교통비</option>
+                  <option value="4">기타</option>
+                </Select>
+                <Select>
+                  <option disabled hidden selected>
+                    카테고리
+                  </option>
+                  <option value="1">식비</option>
+                  <option value="2">쇼핑</option>
+                  <option value="3">교통비</option>
+                  <option value="4">기타</option>
+                </Select>
+                <Select>
+                  <option disabled hidden selected>
+                    카테고리
+                  </option>
+                  <option value="1">식비</option>
+                  <option value="2">쇼핑</option>
+                  <option value="3">교통비</option>
+                  <option value="4">기타</option>
+                </Select>
+                <Select>
+                  <option disabled hidden selected>
+                    카테고리
+                  </option>
+                  <option value="1">식비</option>
+                  <option value="2">쇼핑</option>
+                  <option value="3">교통비</option>
+                  <option value="4">기타</option>
+                </Select>
+                <Select>
+                  <option disabled hidden selected>
+                    카테고리
+                  </option>
+                  <option value="1">식비</option>
+                  <option value="2">쇼핑</option>
+                  <option value="3">교통비</option>
+                  <option value="4">기타</option>
+                </Select>
+                <Select>
+                  <option disabled hidden selected>
+                    카테고리
+                  </option>
+                  <option value="1">식비</option>
+                  <option value="2">쇼핑</option>
+                  <option value="3">교통비</option>
+                  <option value="4">기타</option>
+                </Select>
+              </SelectBox>
+              <Line2 src="images/Line 9.png"></Line2>
+              <WhiteBoxArea>
+                <WhiteBox>
+                  <Input placeholder="소비 내역"></Input>
+                  <Input placeholder="금액" type="number"></Input>
+                </WhiteBox>
+                <WhiteBox>
+                  <Input placeholder="소비 내역"></Input>
+                  <Input placeholder="금액" type="number"></Input>
+                </WhiteBox>
+                <WhiteBox>
+                  <Input placeholder="소비 내역"></Input>
+                  <Input placeholder="금액" type="number"></Input>
+                </WhiteBox>
+                <WhiteBox>
+                  <Input placeholder="소비 내역"></Input>
+                  <Input placeholder="금액" type="number"></Input>
+                </WhiteBox>
+                <WhiteBox>
+                  <Input placeholder="소비 내역"></Input>
+                  <Input placeholder="금액" type="number"></Input>
+                </WhiteBox>
+                <WhiteBox>
+                  <Input placeholder="소비 내역"></Input>
+                  <Input placeholder="금액" type="number"></Input>
+                </WhiteBox>
+                <WhiteBox>
+                  <Input placeholder="소비 내역"></Input>
+                  <Input placeholder="금액" type="number"></Input>
+                </WhiteBox>
+                <WhiteBox>
+                  <Input placeholder="소비 내역"></Input>
+                  <Input placeholder="금액" type="number"></Input>
+                </WhiteBox>
+              </WhiteBoxArea>
             </FormContent>
           </form>
           <Bottom src="images/Bottom.png"></Bottom>
@@ -295,4 +394,4 @@ const Writeform1 = () => {
   );
 };
 
-export default Writeform1;
+export default Writeform2;

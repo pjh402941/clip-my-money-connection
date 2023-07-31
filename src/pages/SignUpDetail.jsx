@@ -98,6 +98,10 @@ const Input = styled.input`
     color: #b3dbd4;
     padding-left: 10px;
   }
+  &:focus {
+    border: none;
+    outline: none;
+  }
 `;
 
 const Select = styled.select`
@@ -166,11 +170,11 @@ const SignUpDetail = () => {
     <Container>
       <BodyWrapper>
         <Top>
-          <Back onClick={onClickBtn}>
+          <Back onClick={onClickBtn} width="16px">
             <img
               src={`${process.env.PUBLIC_URL}/images/back.png`}
               alt="back"
-              width="18px"
+              width="16px"
             />
           </Back>
         </Top>
