@@ -122,6 +122,8 @@ const Footer = styled.footer`
   height: 80px;
   width: 100%;
   margin-top: 40px;
+  position: absolute;
+  bottom: 0;
 `;
 
 const ToolBox = styled.div`
@@ -271,7 +273,7 @@ const Writeform1 = () => {
   };
 
   const handleSubmitBoxClick = () => {
-    navigate("/save");
+    navigate("/write");
   };
 
   // 날짜를 형식에 맞게 포맷하여 가져오는 함수
