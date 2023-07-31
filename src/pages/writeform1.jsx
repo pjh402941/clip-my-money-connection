@@ -1,9 +1,8 @@
 import React, { useCallback, useState, useRef } from "react";
 import styled from "styled-components";
-import TodoTemplate from "./TodoTemplate";
-import TodoInsert from "./TodoInsert";
-import TodoList from "./TodoList";
+
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 
 const Container = styled.div`
   display: flex;
@@ -119,30 +118,11 @@ const Bottom = styled.img`
   filter: drop-shadow(0px 4px 3px #b8b5ac);
 `;
 
-const Title = styled.input`
-  border-radius: 6px;
-  background: #fff;
-  border: none;
-  width: 95%;
-  height: 39px;
-  margin: 0;
-  text-align: center;
-  font-family: "Inter", sans-serif;
-  ::placeholder {
-    font-family: "Inter", sans-serif;
-    color: #b3dbd4;
-  }
-  &:focus {
-    outline: none;
-  }
-`;
-
 const Footer = styled.footer`
   background: #55877e;
   height: 80px;
   width: 100%;
-  position: fixed;
-  bottom: 0;
+  margin-top: 40px;
 `;
 
 const ToolBox = styled.div`
@@ -154,109 +134,151 @@ const ToolBox = styled.div`
   padding: 0 15px;
 `;
 
-const Bottombox = styled.div`
-  position: center;
+const TotalBox = styled.div`
+  margin: 0 auto;
+  background-color: white;
+
+  width: 87%;
+  border-radius: 6px;
+  border: 2px solid #55877e;
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: 11px 65px;
+  position: absolute;
+  margin-top: 20px;
+`;
+
+const TotalTag = styled.div``;
+
+const Total = styled.input`
+  position: absolute;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  left: 140px;
+  color: #214a43;
+  float: right;
+  text-align: center;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border: none;
+`;
+
+const TodoInsert = styled.button`
+  background: none;
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  background: #868e96;
+  color: white;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1.7rem;
+  display: center;
+  width: 325px;
+  height: 45px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.1s background ease-in;
+  &:hover {
+    background: #adb5bd;
+  }
+`;
+
+const List = styled.div`
+  margin-top: 20px;
+  height: 280px;
+  overflow-y: scroll;
+`;
+const ListBox = styled.div`
+  display: flex;
+  padding: 8px 11px;
+
+  gap: 2px;
+  margin: auto;
+  margin-bottom: 10px;
+  width: 90%;
   border-radius: 6px;
   background-color: white;
-  width: 96%;
-  height: 45px;
-  margin-top: 7px;
-  margin-left: 7px;
+`;
+
+const ListBoxin = styled.div`
+  display: flex;
+
+  margin: auto;
+  width: 100%;
+  border-radius: 6px;
+  background-color: white;
+
+  justify-content: space-between;
+  align-content: space-between;
+`;
+
+const ListItem = styled.input`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  position: flex;
+  color: #214a43;
+  float: left;
   text-align: center;
-  font-family: "Inter", sans-serif;
-`;
-
-const Totaltext = styled.text`
-  display: flex;
-  width: 120px;
-  height: 40px;
-  flex-direction: column;
-  justify-content: center;
-  color: #214a43;
-  text-align: right;
   font-family: Inter;
-  font-size: 18px;
+  font-size: 11.5px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 `;
 
-const Totalprice = styled.text`
+const Price = styled.input`
+  position: flex;
+
   display: flex;
-  width: 120px;
-  height: 40px;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
-  margin-top: -40px;
-  margin-left: 200px;
+  flex-direction: row;
+  justify-content: space-evenly;
+
   color: #214a43;
-  text-align: left;
+  float: right;
+  text-align: center;
   font-family: Inter;
-  font-size: 18px;
+  font-size: 11.5px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 `;
 
-const TextIcon = styled.img`
-  /* TextIcon 스타일링 */
-`;
-
-const ColorIcon = styled.img`
-  /* ColorIcon 스타일링 */
+const Line0 = styled.img`
+  /*line2 스타일링*/
 `;
 
 const LayoutIcon = styled.img`
   /* LayoutIcon 스타일링 */
 `;
-
 const Writeform1 = () => {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      text: "아이스아메리카노 3700원",
-      checked: true,
-    },
-    {
-      id: 2,
-      text: "키보드 85000원",
-      checked: true,
-    },
-    {
-      id: 3,
-      text: "우산 5000원",
-      checked: false,
-    },
-  ]);
-
-  const nextId = useRef(4);
-
   const navigate = useNavigate();
-  const navigateTowrite = () => {
-    navigate("/write");
+  const navigateTowriteform2 = () => {
+    navigate("/Writeform2");
   };
-
-  const onRemove = useCallback(
-    (id) => {
-      setTodos(todos.filter((todo) => todo.id !== id));
-    },
-    [todos]
-  );
-
-  const onToggle = useCallback(
-    (id) => {
-      setTodos(
-        todos.map((todo) =>
-          todo.id === id ? { ...todo, checked: !todo.checked } : todo
-        )
-      );
-    },
-    [todos]
-  );
 
   const onClickBtn = () => {
     navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
+  };
+
+  const handleSubmitBoxClick = () => {
+    navigate("/save");
+  };
+
+  // 날짜를 형식에 맞게 포맷하여 가져오는 함수
+  const getFormattedDate = () => {
+    const today = moment().format("YYYY . MM . DD ddd");
+    return today;
   };
 
   return (
@@ -273,46 +295,81 @@ const Writeform1 = () => {
         <Body>
           <form>
             <FormHeader>
-              <Date>2023 . 05 . 15 MON</Date>
-              <SubmitBox>
+              <Date>{getFormattedDate()}</Date>
+              <SubmitBox onClick={handleSubmitBoxClick}>
                 <SubmitIcon
+                  onClick={handleSubmitBoxClick}
                   src="images/저장.png"
                   alt="save"
                   width="24px"
                 ></SubmitIcon>
-                <SubmitButton type="submit">저장</SubmitButton>
+                <SubmitButton onClick={handleSubmitBoxClick} type="submit">
+                  저장
+                </SubmitButton>
               </SubmitBox>
             </FormHeader>
             <FormContent>
-              <Title
-                name="title"
-                placeholder="제목을 입력하세요"
-                maxLength="30"
-              />
-              <TodoTemplate>
-                <TodoList
-                  todos={todos}
-                  onRemove={onRemove}
-                  onToggle={onToggle}
-                />
-              </TodoTemplate>
-              <TodoInsert onClick={navigateTowrite} />
-              <Bottombox>
-                <Totaltext>TOTAL</Totaltext>
-                <Totalprice>93700 원</Totalprice>
-              </Bottombox>
+              <List>
+                <ListBox>
+                  <ListBoxin>
+                    <ListItem readOnly></ListItem>
+                    <Price readOnly></Price>
+                  </ListBoxin>
+                </ListBox>
+                <ListBox>
+                  <ListBoxin>
+                    <ListItem readOnly></ListItem>
+                    <Price readOnly></Price>
+                  </ListBoxin>
+                </ListBox>
+                <ListBox>
+                  <ListBoxin>
+                    <ListItem readOnly></ListItem>
+                    <Price readOnly></Price>
+                  </ListBoxin>
+                </ListBox>
+                <ListBox>
+                  <ListBoxin>
+                    <ListItem readOnly></ListItem>
+                    <Price readOnly></Price>
+                  </ListBoxin>
+                </ListBox>
+                <ListBox>
+                  <ListBoxin>
+                    <ListItem readOnly></ListItem>
+                    <Price readOnly></Price>
+                  </ListBoxin>
+                </ListBox>
+                <ListBox>
+                  <ListBoxin>
+                    <ListItem readOnly></ListItem>
+                    <Price readOnly></Price>
+                  </ListBoxin>
+                </ListBox>
+                <ListBox>
+                  <ListBoxin>
+                    <ListItem readOnly></ListItem>
+                    <Price readOnly></Price>
+                  </ListBoxin>
+                </ListBox>
+              </List>
+              <TodoInsert onClick={navigateTowriteform2}>+</TodoInsert>
+              <Line0 src="./images/line0.png"></Line0>
+              <TotalBox>
+                <TotalTag>Total</TotalTag>
+                <Total></Total>
+              </TotalBox>
             </FormContent>
           </form>
           <Bottom src="images/Bottom.png"></Bottom>
         </Body>
         <Footer>
           <ToolBox>
-            <TextIcon src="images/텍스트.png" alt="text" width="24px" />
-            <ColorIcon src="images/색상.png" alt="color" width="24px" />
             <LayoutIcon
               src="images/레이아웃 양식.png"
               alt="layout"
               width="24px"
+              onClick={() => navigate("/Write")}
             />
           </ToolBox>
         </Footer>

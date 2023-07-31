@@ -2,20 +2,38 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const Background = styled.div`
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   position: relative;
-  width: 390px;
-  height: 844px;
-  background: #f5f0e4;
+  text-align: center;
+  background-color: #f5f0e4;
+  -ms-overflow-style: none;
+  font-family: "Inter", sans-serif;
+
+  /* 미디어 쿼리 적용 */
+  @media (hover: hover) {
+    width: 390px;
+    margin: 0 auto;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const BodyWrapper = styled.div`
+  flex: 1; /* 남은 공간을 채우도록 설정 */
+  overflow: auto; /* 스크롤이 있는 경우 내용을 스크롤합니다. */
 `;
 
 const Topbar = styled.div`
-  display: inline-flex;
-  width: 17px;
-  padding: 11px 360px 11px 13px;
-  align-items: center;
-  gap: 11px;
-  background: #55877e;
+  background-color: #55877e;
+  height: 46px;
+  border-bottom: 1px solid #b3b3b3;
+  box-sizing: border-box;
+  padding-top: 13px;
 `;
 
 const Backbutton = styled.div`
@@ -28,32 +46,10 @@ const Backbutton = styled.div`
   color: #ffffff;
 `;
 
-const Toptitle = styled.div`
-  color: #b3dbd4;
-  text-align: center;
-  font-family: Inter;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
-  margin-top: 70px;
-`;
-
-const Bottomtitle = styled.div`
-  color: #b3dbd4;
-  text-align: center;
-  font-family: Inter;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
-`;
-
 const Mainimg = styled.div`
-  margin-left: 70px;
-  width: 225px;
-  height: 206px;
-  flex-shrink: 0;
+  position: relative;
+  margin: auto;
+  margin-top: 70px;
 `;
 
 const Bottombox = styled.div`
@@ -65,7 +61,7 @@ const Bottombox = styled.div`
   gap: 20px;
   width: 300px;
   height: 250px;
-  margin-left: 35px;
+  margin: auto;
   margin-top: 20px;
   border-radius: 6px;
   background: #b3dbd4;
@@ -175,7 +171,7 @@ const Recordstart_ag = () => {
     navigate("/read");
   };
   const navigateToWrite = () => {
-    navigate("/dayselect");
+    navigate("/Dayselect");
   };
 
   const onClickBtn = () => {
@@ -183,43 +179,46 @@ const Recordstart_ag = () => {
   };
 
   return (
-    <Background>
-      <Topbar>
-        <Backbutton onClick={onClickBtn}>
-          <img src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
-        </Backbutton>
-      </Topbar>
-      <Toptitle>SHUT UP AND</Toptitle>
-      <Mainimg>
-        <img
-          src={`${process.env.PUBLIC_URL}/images/mainimg.png`}
-          alt="mainimage"
-        />
-      </Mainimg>
-      <Bottomtitle>CLIP MY MONEY</Bottomtitle>
+    <Container>
+      <BodyWrapper>
+        <Topbar>
+          <Backbutton onClick={onClickBtn}>
+            <img src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
+          </Backbutton>
+        </Topbar>
 
-      <Bottombox>
-        <Listtext>목록</Listtext>
-        <Whitebox1>
-          <Celenderimg>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/celender.png`}
-              alt="celender"
-            />
-          </Celenderimg>
-          <Readingtext onClick={navigateToRead}>가계부 열람</Readingtext>
-        </Whitebox1>
-        <Whitebox2>
-          <Writeimg>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/write.png`}
-              alt="write"
-            />
-          </Writeimg>
-          <Writingtext onClick={navigateToWrite}>가계부 작성</Writingtext>
-        </Whitebox2>
-      </Bottombox>
-    </Background>
+        <Mainimg>
+          <img
+            src={`${process.env.PUBLIC_URL}/images/logo.png`}
+            alt="logo"
+            width="338px"
+            height="302px"
+          />
+        </Mainimg>
+
+        <Bottombox>
+          <Listtext>목록</Listtext>
+          <Whitebox1>
+            <Celenderimg>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/celender.png`}
+                alt="celender"
+              />
+            </Celenderimg>
+            <Readingtext onClick={navigateToRead}>가계부 열람</Readingtext>
+          </Whitebox1>
+          <Whitebox2>
+            <Writeimg>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/write.png`}
+                alt="write"
+              />
+            </Writeimg>
+            <Writingtext onClick={navigateToWrite}>가계부 작성</Writingtext>
+          </Whitebox2>
+        </Bottombox>
+      </BodyWrapper>
+    </Container>
   );
 };
 export default Recordstart_ag;

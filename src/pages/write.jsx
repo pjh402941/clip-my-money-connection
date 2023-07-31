@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import moment from "moment";
-import html2canvas from "html2canvas";
-import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
+import { useNavigate } from "react-router-dom";
+import MDEditor from "@uiw/react-md-editor";
 
 const Container = styled.div`
   display: flex;
@@ -26,8 +26,8 @@ const Container = styled.div`
 `;
 
 const BodyWrapper = styled.div`
-  flex: 1; /* 남은 공간을 채우도록 설정 */
-  overflow: auto; /* 스크롤이 있는 경우 내용을 스크롤합니다. */
+  flex: 1;
+  overflow: auto;
 `;
 
 const Header = styled.header`
@@ -112,6 +112,7 @@ const FormContent = styled.div`
   margin-top: 10px;
   box-shadow: 2px 0 8px #b8b5ac, -2px 0 8px #b8b5ac;
 `;
+
 const Bottom = styled.img`
   width: 100%;
   margin-top: -5px;
@@ -138,7 +139,7 @@ const Title = styled.input`
 
 const Content = styled.div`
   width: 95%;
-  height: 60vh;
+  height: 560px;
   border-radius: 6px;
   margin: auto;
   margin-top: 30px;
@@ -146,20 +147,6 @@ const Content = styled.div`
   font-family: "Inter", sans-serif;
   -ms-overflow-style: none;
   padding-bottom: 23px;
-`;
-const TextArea = styled.textarea`
-  width: 80%;
-  height: 21vh;
-  border: none;
-  resize: none;
-  font-family: "Inter", sans-serif;
-  -ms-overflow-style: none;
-  background-color: transparent;
-  position: absolute;
-  /* top: 273px; */
-  left: 50%;
-  transform: translate(-50%, -50%);
-  top: 373px;
 `;
 
 const ImgBox = styled.div`
@@ -176,14 +163,26 @@ const ImgBox = styled.div`
   padding: 20px 17px 10px 17px;
   position: absolute;
   z-index: 1;
-  top: 50%;
+  bottom: 129px;
   left: 50%;
   transform: translate(-50%, -50%);
   margin-top: 152px;
 `;
 
-const ImgUpload = styled.img`
+const ImgUpload1 = styled.img`
   padding-bottom: 10px;
+  overflow: auto;
+  height: 72px;
+`;
+const ImgUpload2 = styled.img`
+  padding-bottom: 10px;
+  overflow: auto;
+  height: 72px;
+`;
+const ImgUpload3 = styled.img`
+  padding-bottom: 10px;
+  overflow: auto;
+  height: 72px;
 `;
 const TotalBox = styled.div`
   margin: 0 auto;
@@ -200,7 +199,7 @@ const TotalBox = styled.div`
   padding: 11px 65px;
   position: absolute;
   z-index: 1;
-  top: 50%;
+  bottom: 115px;
   left: 50%;
   transform: translate(-50%, -50%);
   margin-top: 281px;
@@ -225,168 +224,45 @@ const ToolBox = styled.div`
   padding: 0 15px;
 `;
 
-const TextIcon = styled.img`
-  /* TextIcon 스타일링 */
-`;
-
-const ImageIcon = styled.img`
-  /* ImageIcon 스타일링 */
-`;
-
-const DrawIcon = styled.img`
-  /* DrawIcon 스타일링 */
-`;
-
-const ColorIcon = styled.img`
-  /* ColorIcon 스타일링 */
-`;
-
 const LayoutIcon = styled.img`
   /* LayoutIcon 스타일링 */
 `;
-const ColorPickerContainer = styled.div`
-  position: absolute;
-  z-index: 3;
-  top: calc(
-    50% - 20px - 24px
-  ); /* Adjust this value based on the height of the ColorIcon */
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
 
-const Write = ({ setShowWrite, setShowSave }) => {
-  const canvasRef = useRef(null);
-  const [ctx, setCtx] = useState(null);
-  const [isDrawing, setIsDrawing] = useState(false);
-  const [lastX, setLastX] = useState(0);
-  const [lastY, setLastY] = useState(0);
-  const [currentColor, setCurrentColor] = useState("#000");
-  const [showColorPicker, setShowColorPicker] = useState(false);
-  const [isDrawingMode, setIsDrawingMode] = useState(true);
-  const [drawingData, setDrawingData] = useState([]);
-  const navigate = useNavigate(); // Create a navigate function for navigation
+const Write = () => {
+  const navigate = useNavigate();
+  const [mdinfo, setMD] = useState("");
+  const imageInputRef1 = useRef(null);
+  const imageInputRef2 = useRef(null);
+  const imageInputRef3 = useRef(null);
 
-  // 날짜를 형식에 맞게 포맷하여 가져오는 함수
   const getFormattedDate = () => {
     const today = moment().format("YYYY . MM . DD ddd");
     return today;
   };
 
-  // Function to handle SubmitBox click and navigate to Save component
   const handleSubmitBoxClick = () => {
-    // Use html2canvas library to capture the component as an image
-    html2canvas(document.getElementById("write-component")).then((canvas) => {
-      // Convert the canvas image to data URL
-      const imageDataURL = canvas.toDataURL();
-
-      // Navigate to Save component with the captured image data
-      navigate("/save", { state: { capturedImage: imageDataURL } });
-    });
+    navigate("/save");
   };
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
-    setCtx(context);
-  }, []);
+  const handleImageUpload = (event, imgRef) => {
+    const file = event.target.files[0];
+    console.log("Uploaded file:", file);
 
-  // Event handlers for drawing
-  const handleMouseDown = (e) => {
-    setIsDrawing(true);
-    setLastX(e.nativeEvent.offsetX);
-    setLastY(e.nativeEvent.offsetY);
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (imgRef && imgRef.current) {
+        imgRef.current.src = reader.result;
+      }
+    };
+    reader.readAsDataURL(file);
+
+    event.target.value = "";
   };
 
-  const handleMouseUp = () => {
-    setIsDrawing(false);
-    // Save the drawing data when the mouse is up
-    setDrawingData((prevDrawingData) => [
-      ...prevDrawingData,
-      { x: lastX, y: lastY },
-    ]);
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDrawing) return;
-    const x = e.nativeEvent.offsetX;
-    const y = e.nativeEvent.offsetY;
-    draw(lastX, lastY, x, y);
-    setLastX(x);
-    setLastY(y);
-  };
-
-  // Drawing function
-  const draw = (startX, startY, endX, endY) => {
-    if (!ctx) return;
-    ctx.strokeStyle = currentColor; // Use the current selected color
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(startX, startY);
-    ctx.lineTo(endX, endY);
-    ctx.stroke();
-  };
-
-  // Function to handle color icon click
-  const handleColorIconClick = () => {
-    setShowColorPicker((prevState) => !prevState); // Toggle color picker visibility
-  };
-
-  // Function to handle color picker change
-  const handleColorChange = (e) => {
-    setCurrentColor(e.target.value); // Set selected color
-    setShowColorPicker(false); // Hide the color picker after selecting a color
-  };
-
-  const handleTextIconClick = () => {
-    setIsDrawingMode(false);
-    const canvas = canvasRef.current;
-    const imageDataURL = canvas.toDataURL();
-    setDrawingData((prevDrawingData) => [...prevDrawingData, imageDataURL]);
-  };
-  // Function to handle DrawIcon click
-  const handleDrawIconClick = () => {
-    setIsDrawingMode(true); // Set drawing mode
-  };
-
-  // Function to clear the canvas
-  const clearCanvas = () => {
-    ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-  };
-
-  // Function to redraw the saved drawings
-  const redrawDrawings = () => {
-    // Clear the canvas first
-    clearCanvas();
-
-    // Redraw the saved drawing data
-    drawingData.forEach((data) => {
-      const image = new Image();
-      image.src = data;
-      image.onload = () => {
-        ctx.drawImage(image, 0, 0);
-      };
-    });
-  };
-
-  const [showImagePicker, setShowImagePicker] = useState(false);
-
-  // 이미지 아이콘 클릭 처리 함수
-  const handleImageIconClick = () => {
-    setShowImagePicker(!showImagePicker);
-  };
-
-  // 이미지 선택 처리 함수
-  const handleImageSelect = (e) => {
-    // 이미지 파일을 선택한 후의 로직을 여기에 작성합니다.
-    // 선택한 이미지 파일은 e.target.files를 통해 접근할 수 있습니다.
-  };
-
-  const onClickBtn = () => {
-    navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
-  };
-
-  const hi = () => {
-    navigate(`/writeform1`);
+  const stopPropagation = (event) => {
+    event.stopPropagation();
   };
 
   return (
@@ -394,112 +270,120 @@ const Write = ({ setShowWrite, setShowSave }) => {
       <BodyWrapper>
         <Header>
           <BackButton
-            onClick={onClickBtn}
+            onClick={() => navigate(-1)}
             src="images/뒤로가기.png"
             alt="back"
             width="16px"
           />
         </Header>
         <Body>
-          <form>
-            <FormHeader>
-              <Date>{getFormattedDate()}</Date>
-              <SubmitBox onClick={handleSubmitBoxClick}>
-                <SubmitIcon src="images/저장.png" alt="save" width="24px" />
-                <SubmitButton type="submit">저장</SubmitButton>
-              </SubmitBox>
-            </FormHeader>
-            <FormContent>
-              <Title
-                name="title"
-                placeholder="제목을 입력하세요"
-                maxLength="30"
+          <FormHeader>
+            <Date>{getFormattedDate()}</Date>
+            <SubmitBox onClick={handleSubmitBoxClick}>
+              <SubmitIcon
+                src="images/저장.png"
+                alt="save"
+                width="24px"
+                onClick={handleSubmitBoxClick}
               />
-              <Content name="content">
-                {isDrawingMode ? ( // If it's drawing mode, show canvas
-                  <canvas
-                    ref={canvasRef}
-                    width="316"
-                    height="200"
-                    onMouseDown={handleMouseDown}
-                    onMouseUp={handleMouseUp}
-                    onMouseMove={handleMouseMove}
-                  ></canvas>
-                ) : (
-                  // Otherwise, show textarea
-                  <TextArea></TextArea>
-                )}
-                <ImgBox>
-                  <ImgUpload src="images/샘플.png" width="72px"></ImgUpload>
-                  <ImgUpload src="images/샘플.png" width="72px"></ImgUpload>
-                  <ImgUpload src="images/샘플.png" width="72px"></ImgUpload>
-                  <ImgUpload src="images/샘플.png" width="72px"></ImgUpload>
-                  <ImgUpload src="images/샘플.png" width="72px"></ImgUpload>
-                  <ImgUpload src="images/샘플.png" width="72px"></ImgUpload>
-                </ImgBox>
-                <TotalBox>
-                  <TotalTag>Total</TotalTag>
-                  <Total>00won</Total>
-                </TotalBox>
-              </Content>
-            </FormContent>
-          </form>
+              <SubmitButton type="submit" onClick={handleSubmitBoxClick}>
+                저장
+              </SubmitButton>
+            </SubmitBox>
+          </FormHeader>
+          <FormContent>
+            <Title
+              name="title"
+              placeholder="제목을 입력하세요"
+              maxLength="30"
+            />
+            <Content name="content">
+              <div className="markarea">
+                <div data-color-mode="light">
+                  <MDEditor value={mdinfo} onChange={setMD} height={300} />
+                </div>
+              </div>
+              <ImgBox>
+                <label htmlFor="imgUpload1">
+                  <ImgUpload1
+                    src="images/샘플.png"
+                    width="72px"
+                    ref={imageInputRef1}
+                    onClick={(event) => {
+                      stopPropagation(event);
+                      imageInputRef1.current.click();
+                    }}
+                  />
+                  <input
+                    type="file"
+                    id="imgUpload1"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={(event) =>
+                      handleImageUpload(event, imageInputRef1)
+                    }
+                  />
+                </label>
+                <label htmlFor="imgUpload2">
+                  <ImgUpload2
+                    src="images/샘플.png"
+                    width="72px"
+                    ref={imageInputRef2}
+                    onClick={(event) => {
+                      stopPropagation(event);
+                      imageInputRef2.current.click();
+                    }}
+                  />
+                  <input
+                    type="file"
+                    id="imgUpload2"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={(event) =>
+                      handleImageUpload(event, imageInputRef2)
+                    }
+                  />
+                </label>
+                <label htmlFor="imgUpload3">
+                  <ImgUpload3
+                    src="images/샘플.png"
+                    width="72px"
+                    ref={imageInputRef3}
+                    onClick={(event) => {
+                      stopPropagation(event);
+                      imageInputRef3.current.click();
+                    }}
+                  />
+                  <input
+                    type="file"
+                    id="imgUpload3"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={(event) =>
+                      handleImageUpload(event, imageInputRef3)
+                    }
+                  />
+                </label>
+              </ImgBox>
+              <TotalBox>
+                <TotalTag>Total</TotalTag>
+                <Total>00won</Total>
+              </TotalBox>
+            </Content>
+          </FormContent>
           <Bottom src="images/Bottom.png"></Bottom>
         </Body>
         <Footer>
           <ToolBox>
-            <TextIcon
-              src="images/텍스트.png"
-              alt="text"
-              width="24px"
-              onClick={handleTextIconClick} // Added onClick handler for text mode
-            />
-            <ImageIcon
-              src="images/이미지0.png"
-              alt="image"
-              width="24px"
-              onClick={handleImageIconClick}
-            />
-            <DrawIcon
-              src="images/그리기.png"
-              alt="draw"
-              width="24px"
-              onClick={handleDrawIconClick} // Added onClick handler for drawing mode
-            />
-            <ColorIcon
-              src="images/색상.png"
-              alt="color"
-              width="24px"
-              onClick={handleColorIconClick}
-            />
             <LayoutIcon
               src="images/레이아웃 양식.png"
               alt="layout"
               width="24px"
-              onClick={hi}
+              onClick={() => navigate("/Writeform1")}
             />
           </ToolBox>
         </Footer>
       </BodyWrapper>
-      {/* Render the color picker */}
-      {showColorPicker && (
-        <ColorPickerContainer>
-          <input
-            type="color"
-            value={currentColor}
-            onChange={handleColorChange}
-          />
-        </ColorPickerContainer>
-      )}
-      {/* 파일 선택 창 */}
-      {showImagePicker && (
-        <input
-          type="file"
-          style={{ display: "none" }}
-          onChange={handleImageSelect}
-          ref={(fileInput) => fileInput && fileInput.click()} // 프로그래밍 방식으로 클릭 이벤트 트리거
-        />
-      )}
     </Container>
   );
 };

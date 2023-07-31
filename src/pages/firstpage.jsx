@@ -23,6 +23,11 @@ const Container = styled.div`
   }
 `;
 
+const BodyWrapper = styled.div`
+  flex: 1; /* 남은 공간을 채우도록 설정 */
+  overflow: auto; /* 스크롤이 있는 경우 내용을 스크롤합니다. */
+`;
+
 const Topbar = styled.div`
   background-color: #55877e;
   height: 46px;
@@ -36,31 +41,10 @@ const Backbutton = styled.div`
   left: 13px;
 `;
 
-const Toptitle = styled.div`
-  color: #b3dbd4;
-  text-align: center;
-  font-family: Inter;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
-  margin-top: 70px;
-`;
-
-const Bottomtitle = styled.div`
-  color: #b3dbd4;
-  text-align: center;
-  font-family: Inter;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
-`;
-
 const Mainimg = styled.div`
-  margin: 0 auto;
-  width: 225px;
-  height: 206px;
+  position: relative;
+  margin: auto;
+  margin-top: 70px;
 `;
 
 const Box1 = styled.div`
@@ -172,29 +156,32 @@ const Firstpage = () => {
 
   return (
     <Container>
-      <Topbar>
-        <Backbutton onClick={onClickBtn}>
-          <img src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
-        </Backbutton>
-      </Topbar>
-      <Toptitle>SHUT UP AND</Toptitle>
-      <Mainimg>
-        <img
-          src={`${process.env.PUBLIC_URL}/images/mainimg.png`}
-          alt="mainimage"
-        />
-      </Mainimg>
-      <Bottomtitle>CLIP MY MONEY</Bottomtitle>
+      <BodyWrapper>
+        <Topbar>
+          <Backbutton onClick={onClickBtn}>
+            <img src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
+          </Backbutton>
+        </Topbar>
 
-      <Box1 onClick={navigateTologinpage}>
-        <Logintext>로그인</Logintext>
-      </Box1>
-      <Box2 onClick={navigateTosignup}>
-        <Jointext>회원가입</Jointext>
-      </Box2>
-      <Box3 onClick={navigateTonosign}>
-        <Nonmemblogintext>비회원 로그인</Nonmemblogintext>
-      </Box3>
+        <Mainimg>
+          <img
+            src={`${process.env.PUBLIC_URL}/images/logo.png`}
+            alt="logo"
+            width="338px"
+            height="302px"
+          />
+        </Mainimg>
+
+        <Box1 onClick={navigateTologinpage}>
+          <Logintext>로그인</Logintext>
+        </Box1>
+        <Box2 onClick={navigateTosignup}>
+          <Jointext>회원가입</Jointext>
+        </Box2>
+        <Box3 onClick={navigateTonosign}>
+          <Nonmemblogintext>비회원 로그인</Nonmemblogintext>
+        </Box3>
+      </BodyWrapper>
     </Container>
   );
 };

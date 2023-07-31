@@ -2,12 +2,30 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const Background = styled.div`
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   position: relative;
-  height: 844px;
-  margin: 0 auto;
   text-align: center;
-  background: #f5f0e4;
+  background-color: #f5f0e4;
+  -ms-overflow-style: none;
+  font-family: "Inter", sans-serif;
+
+  /* 미디어 쿼리 적용 */
+  @media (hover: hover) {
+    width: 390px;
+    margin: 0 auto;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const BodyWrapper = styled.div`
+  flex: 1; /* 남은 공간을 채우도록 설정 */
+  overflow: auto; /* 스크롤이 있는 경우 내용을 스크롤합니다. */
 `;
 
 const Top = styled.div`
@@ -73,22 +91,12 @@ const IdPwInput = styled.input`
   background: #ffffff;
   border-radius: 6px;
   border: none;
-  margin-top: 10px;
+  margin-top: 17px;
 
   &::placeholder {
     color: #b3dbd4;
     padding-left: 10px;
   }
-`;
-
-const PwAgain = styled.div`
-  position: relative;
-  margin-left: 220px;
-  margin-top: 8px;
-  width: 80px;
-  height: 12px;
-  font-size: 10px;
-  color: #55877e;
 `;
 
 const LoginBox = styled.button`
@@ -110,7 +118,7 @@ const Join = styled.div`
   margin: auto;
   margin-top: 20px;
   background: #b3dbd4;
-  width: 185px;
+  width: 200px;
   height: 15px;
   font-size: 12px;
   color: #ffffff;
@@ -148,51 +156,51 @@ const Login = () => {
   };
 
   const handleLogin = () => {
-    //승연 언니 페이지랑 연결
     navigate(`/Recordstart_ag`);
   };
 
   return (
-    <Background>
-      <Top>
-        <Back onClick={onClickBtn}>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/back.png`}
-            alt="back"
-            width="18px"
-          />
-        </Back>
-      </Top>
-      <TitleBox>
-        <Title>로그인</Title>
-        <Person>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/person.png`}
-            alt="person"
-            width="24px"
-          />
-        </Person>
-      </TitleBox>
-      <LoginInput>
-        <IdPwInput
-          type="text"
-          placeholder="아이디"
-          value={loginId}
-          onChange={handleLoginIdChange}
-        ></IdPwInput>
-        <IdPwInput
-          type="password"
-          placeholder="비밀번호"
-          value={loginPw}
-          onChange={handleLoginPwChange}
-        ></IdPwInput>
-        <PwAgain>비밀번호 재설정</PwAgain>
-      </LoginInput>
-      <LoginBox onClick={handleLogin} disabled={loginButtonDisabled}>
-        로그인
-      </LoginBox>
-      <Join onClick={onClick}>아직 회원이 아니신가요? 회원가입</Join>
-    </Background>
+    <Container>
+      <BodyWrapper>
+        <Top>
+          <Back onClick={onClickBtn}>
+            <img
+              src={`${process.env.PUBLIC_URL}/images/back.png`}
+              alt="back"
+              width="18px"
+            />
+          </Back>
+        </Top>
+        <TitleBox>
+          <Title>로그인</Title>
+          <Person>
+            <img
+              src={`${process.env.PUBLIC_URL}/images/person.png`}
+              alt="person"
+              width="24px"
+            />
+          </Person>
+        </TitleBox>
+        <LoginInput>
+          <IdPwInput
+            type="text"
+            placeholder="아이디"
+            value={loginId}
+            onChange={handleLoginIdChange}
+          ></IdPwInput>
+          <IdPwInput
+            type="password"
+            placeholder="비밀번호"
+            value={loginPw}
+            onChange={handleLoginPwChange}
+          ></IdPwInput>
+        </LoginInput>
+        <LoginBox onClick={handleLogin} disabled={loginButtonDisabled}>
+          로그인
+        </LoginBox>
+        <Join onClick={onClick}>아직 회원이 아니신가요? 회원가입</Join>
+      </BodyWrapper>
+    </Container>
   );
 };
 export default Login;

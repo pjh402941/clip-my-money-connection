@@ -2,12 +2,29 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const Background = styled.div`
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   position: relative;
-  height: 844px;
-  margin: 0 auto;
   text-align: center;
-  background: #f5f0e4;
+  background-color: #f5f0e4;
+  -ms-overflow-style: none;
+  font-family: "Inter", sans-serif;
+
+  /* 미디어 쿼리 적용 */
+  @media (hover: hover) {
+    width: 390px;
+    margin: 0 auto;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+const BodyWrapper = styled.div`
+  flex: 1; /* 남은 공간을 채우도록 설정 */
+  overflow: auto; /* 스크롤이 있는 경우 내용을 스크롤합니다. */
 `;
 
 const Top = styled.div`
@@ -146,74 +163,76 @@ const SignUpDetail = () => {
   };
 
   return (
-    <Background>
-      <Top>
-        <Back onClick={onClickBtn}>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/back.png`}
-            alt="back"
-            width="18px"
-          />
-        </Back>
-      </Top>
-      <TitleBox>
-        <Title>회원가입</Title>
-        <Person>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/person.png`}
-            alt="person"
-            width="24px"
-          />
-        </Person>
-      </TitleBox>
-      <InputBox>
-        <Input type="text" placeholder="이름"></Input>
-      </InputBox>
-      <InputBox>
-        <Input type="text" placeholder="닉네임"></Input>
-      </InputBox>
-      <InputBox>
-        <Input type="text" placeholder="아이디"></Input>
-      </InputBox>
-      <InputBox>
-        <Input type="text" placeholder="비밀번호"></Input>
-      </InputBox>
-      <InputBox>
-        <Input type="phone" placeholder="전화번호"></Input>
-      </InputBox>
-      <InputBox>
-        {/* 년도 드롭다운 */}
-        <Select onChange={(e) => setYear(e.target.value)}>
-          <option value="">년</option>
-          {years.map((year) => (
-            <option key={year} value={year}>
-              {year}
-            </option>
-          ))}
-        </Select>
+    <Container>
+      <BodyWrapper>
+        <Top>
+          <Back onClick={onClickBtn}>
+            <img
+              src={`${process.env.PUBLIC_URL}/images/back.png`}
+              alt="back"
+              width="18px"
+            />
+          </Back>
+        </Top>
+        <TitleBox>
+          <Title>회원가입</Title>
+          <Person>
+            <img
+              src={`${process.env.PUBLIC_URL}/images/person.png`}
+              alt="person"
+              width="24px"
+            />
+          </Person>
+        </TitleBox>
+        <InputBox>
+          <Input type="text" placeholder="이름"></Input>
+        </InputBox>
+        <InputBox>
+          <Input type="text" placeholder="닉네임"></Input>
+        </InputBox>
+        <InputBox>
+          <Input type="text" placeholder="아이디"></Input>
+        </InputBox>
+        <InputBox>
+          <Input type="text" placeholder="비밀번호"></Input>
+        </InputBox>
+        <InputBox>
+          <Input type="phone" placeholder="전화번호"></Input>
+        </InputBox>
+        <InputBox>
+          {/* 년도 드롭다운 */}
+          <Select onChange={(e) => setYear(e.target.value)}>
+            <option value="">년</option>
+            {years.map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </Select>
 
-        {/* 월 드롭다운 */}
-        <Select onChange={(e) => setMonth(e.target.value)}>
-          <option value="">월</option>
-          {months.map((month) => (
-            <option key={month} value={month}>
-              {month}
-            </option>
-          ))}
-        </Select>
+          {/* 월 드롭다운 */}
+          <Select onChange={(e) => setMonth(e.target.value)}>
+            <option value="">월</option>
+            {months.map((month) => (
+              <option key={month} value={month}>
+                {month}
+              </option>
+            ))}
+          </Select>
 
-        {/* 일자 드롭다운 */}
-        <Select onChange={(e) => setDay(e.target.value)}>
-          <option value="">일</option>
-          {days.map((day) => (
-            <option key={day} value={day}>
-              {day}
-            </option>
-          ))}
-        </Select>
-      </InputBox>
-      <Done onClick={onClick}>회원가입 완료</Done>
-    </Background>
+          {/* 일자 드롭다운 */}
+          <Select onChange={(e) => setDay(e.target.value)}>
+            <option value="">일</option>
+            {days.map((day) => (
+              <option key={day} value={day}>
+                {day}
+              </option>
+            ))}
+          </Select>
+        </InputBox>
+        <Done onClick={onClick}>회원가입 완료</Done>
+      </BodyWrapper>
+    </Container>
   );
 };
 
