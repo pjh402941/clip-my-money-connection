@@ -31,15 +31,15 @@ const BodyWrapper = styled.div`
 `;
 
 const Header = styled.header`
-position: relative;
-height: 46px;
-background: #55877e;
+  position: relative;
+  height: 46px;
+  background: #55877e;
 `;
 
 const BackButton = styled.img`
-position: relative;
-margin-left: -90%;
-padding-top: 15px;
+  position: relative;
+  margin-left: -90%;
+  padding-top: 15px;
 `;
 
 const Body = styled.div`
@@ -208,14 +208,6 @@ const Input = styled.input`
   }
 `;
 
-const TextIcon = styled.img`
-  /* TextIcon 스타일링 */
-`;
-
-const ColorIcon = styled.img`
-  /* ColorIcon 스타일링 */
-`;
-
 const LayoutIcon = styled.img`
   /* LayoutIcon 스타일링 */
 `;
@@ -380,8 +372,6 @@ const Writeform2 = () => {
         </Body>
         <Footer>
           <ToolBox>
-            <TextIcon src="images/텍스트.png" alt="text" width="24px" />
-            <ColorIcon src="images/색상.png" alt="color" width="24px" />
             <LayoutIcon
               src="images/레이아웃 양식.png"
               alt="layout"
