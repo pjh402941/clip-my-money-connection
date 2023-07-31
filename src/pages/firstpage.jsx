@@ -41,31 +41,10 @@ const Backbutton = styled.div`
   left: 13px;
 `;
 
-const Toptitle = styled.div`
-  color: #b3dbd4;
-  text-align: center;
-  font-family: Inter;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
-  margin-top: 70px;
-`;
-
-const Bottomtitle = styled.div`
-  color: #b3dbd4;
-  text-align: center;
-  font-family: Inter;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
-`;
-
 const Mainimg = styled.div`
-  margin: 0 auto;
-  width: 225px;
-  height: 206px;
+  position: relative;
+  margin: auto;
+  margin-top: 70px;
 `;
 
 const Box1 = styled.div`
@@ -183,14 +162,15 @@ const Firstpage = () => {
             <img src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
           </Backbutton>
         </Topbar>
-        <Toptitle>SHUT UP AND</Toptitle>
+
         <Mainimg>
           <img
-            src={`${process.env.PUBLIC_URL}/images/mainimg.png`}
-            alt="mainimage"
+            src={`${process.env.PUBLIC_URL}/images/logo.png`}
+            alt="logo"
+            width="338px"
+            height="302px"
           />
         </Mainimg>
-        <Bottomtitle>CLIP MY MONEY</Bottomtitle>
 
         <Box1 onClick={navigateTologinpage}>
           <Logintext>로그인</Logintext>

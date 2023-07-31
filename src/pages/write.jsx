@@ -487,11 +487,7 @@ const Write = ({ setShowWrite, setShowSave }) => {
               src="images/레이아웃 양식.png"
               alt="layout"
               width="24px"
-<<<<<<< HEAD
               onClick={handleLayoutIconClick}
-=======
-              onClick={hi}
->>>>>>> bcedc7cdb40e6429198dab915908905294e226fc
             />
           </ToolBox>
         </Footer>
