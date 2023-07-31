@@ -159,8 +159,6 @@ const Share = () => {
     }
   }, [location.state]);
 
-  const navigate = useNavigate();
-
   const onClickBtn = () => {
     navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
   };
