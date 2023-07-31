@@ -5,8 +5,6 @@ import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
 import "./Calendarstyle.css";
 
-//import moment from "moment";
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -106,7 +104,6 @@ const Calendarbox = styled.div`
   gap: 11px;
   margin: 0 auto;
   margin-top: 40px;
-
   border-radius: 6px;
   background: #2a534c;
 `;
