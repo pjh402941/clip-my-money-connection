@@ -91,7 +91,7 @@ const IdPwInput = styled.input`
   background: #ffffff;
   border-radius: 6px;
   border: none;
-  margin-top: 10px;
+  margin-top: 17px;
 
   &::placeholder {
     color: #b3dbd4;
@@ -101,16 +101,6 @@ const IdPwInput = styled.input`
     outline: none;
     border: none;
   }
-`;
-
-const PwAgain = styled.div`
-  position: relative;
-  margin-left: 220px;
-  margin-top: 8px;
-  width: 80px;
-  height: 12px;
-  font-size: 10px;
-  color: #55877e;
 `;
 
 const LoginBox = styled.button`
@@ -132,7 +122,7 @@ const Join = styled.div`
   margin: auto;
   margin-top: 20px;
   background: #b3dbd4;
-  width: 188px;
+  width: 200px;
   height: 15px;
   font-size: 12px;
   color: #ffffff;
@@ -208,7 +198,6 @@ const Login = () => {
             value={loginPw}
             onChange={handleLoginPwChange}
           ></IdPwInput>
-          <PwAgain>비밀번호 재설정</PwAgain>
         </LoginInput>
         <LoginBox onClick={handleLogin} disabled={loginButtonDisabled}>
           로그인
