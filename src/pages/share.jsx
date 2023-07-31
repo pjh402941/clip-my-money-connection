@@ -58,7 +58,6 @@ const ActionWrapper = styled.div`
   background: #b3dbd4;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   width: 295px;
-  height: 179px;
   padding: 27px 25px;
   margin: 0 auto;
   margin-top: 32px;
@@ -105,49 +104,6 @@ const Message = styled(SocialIcon)`
   /* Message 스타일링 */
 `;
 
-const Plus = styled(SocialIcon)`
-  /* Plus 스타일링 */
-`;
-
-const LinkWrapper = styled.div`
-  border-radius: 6px;
-  background: #fff;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  margin-top: 18px;
-  width: 300px;
-  height: 47px;
-  padding: 6px 5px;
-  box-sizing: border-box;
-`;
-
-const LinkBox = styled.div`
-  border-radius: 6px;
-  background: #55877e;
-  width: 260px;
-  height: 35px;
-  float: left;
-  position: relative;
-`;
-
-const Link = styled.input`
-  border: none;
-  background: #55877e;
-  color: white;
-  position: absolute;
-  left: 8px;
-  top: 8px;
-  height: 15px;
-  width: 242px;
-  &:focus {
-    outline: none;
-  }
-`;
-
-const CopyIcon = styled(SocialIcon)`
-  margin-top: 4px;
-  margin-left: 6px;
-`;
-
 const Share = () => {
   const [capturedImageUrl, setCapturedImageUrl] = useState(null);
   const location = useLocation();
@@ -181,21 +137,23 @@ const Share = () => {
           <ActionWrapper>
             <ShareButton>공유</ShareButton>
             <ShareBox>
-              <FaceBook src="images/페이스북.png" alt="facebook" width="24px" />
-              <Insta src="images/인스타.png" alt="insta" width="24px" />
-              <Message src="images/문자.png" alt="message" width="24px" />
-              <Plus src="images/더보기.png" alt="plus" width="24px" />
+              <a href="https://www.facebook.com/" target="_blank">
+                <FaceBook
+                  src="images/페이스북.png"
+                  alt="facebook"
+                  width="24px"
+                />
+              </a>
+              <a href="https://www.instagram.com/" target="_blank">
+                <Insta src="images/인스타.png" alt="insta" width="24px" />
+              </a>
+              <a
+                href="https://mail.google.com/mail/u/0/?hl=ko#inbox"
+                target="_blank"
+              >
+                <Message src="images/문자.png" alt="message" width="24px" />
+              </a>
             </ShareBox>
-            <LinkWrapper>
-              <LinkBox>
-                <Link readOnly></Link>
-              </LinkBox>
-              <CopyIcon
-                src="images/복사.png"
-                alt="copy"
-                width="24px"
-              ></CopyIcon>
-            </LinkWrapper>
           </ActionWrapper>
         </Body>
       </BodyWrapper>
