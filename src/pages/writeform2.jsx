@@ -221,6 +221,11 @@ const Line = styled.img`
   /*line 스타일링*/
 `;
 
+const Line2 = styled.img`
+  /*line2 스타일링*/
+  height: 75%;
+`;
+
 const TextIcon = styled.img`
   /* TextIcon 스타일링 */
 `;
@@ -284,6 +289,8 @@ const Writeform1 = () => {
                 maxLength="30"
               />
               <Line src="images/line.png" alt="line"></Line>
+              <Line2 src="images/line2.png" alt="line"></Line2>
+
               <Bottombox>
                 <Totaltext>TOTAL</Totaltext>
                 <Totalprice>00 원</Totalprice>
