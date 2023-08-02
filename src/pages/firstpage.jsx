@@ -172,7 +172,7 @@ const Firstpage = () => {
           <Logintext>로그인</Logintext>
         </Box1>
         <Box2 onClick={navigateTosignup}>
-          <Jointext>회원가입</Jointext>
+          <Jointext>회원 가입</Jointext>
         </Box2>
         <Box3 onClick={navigateTonosign}>
           <Nonmemblogintext>비회원 로그인</Nonmemblogintext>
